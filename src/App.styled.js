@@ -3,9 +3,9 @@ import { mobile, tablet, desktop } from "./components/constants/breakpoints";
 
 export const Container = styled.div`
   width: calc(${mobile} - 40px);
-  min-height: calc(100vh - 20px);
+  min-height: calc(100vh - 40px);
   margin: 0 auto;
-  padding: 20px 20px 0 20px;
+  padding: 20px;
 
   background-color: var(--background-color);
 

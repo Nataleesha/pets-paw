@@ -1,18 +1,20 @@
 import { styled } from "styled-components";
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  margin-bottom: 45px;
+`;
 
 export const ImageCard = styled.div`
   position: relative;
-  width: 295px;
-  height: 166px;
+  margin-top: 10px;
+  width: 100%;
 `;
 
 export const Image = styled.img`
   object-fit: cover;
   border-radius: 20px;
   width: 100%;
-  height: 100%;
+  height: auto;
 `;
 
 export const ButtonList = styled.ul`
