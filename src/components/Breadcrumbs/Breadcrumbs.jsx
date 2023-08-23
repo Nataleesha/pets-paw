@@ -1,11 +1,17 @@
+import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import { Container, BackLink, Title } from "./Breadcrumbs.styled";
 
 const Breadcrumbs = ({ text }) => {
+  const navigate = useNavigate();
+  const goBack = () => {
+    navigate(-1);
+  };
+
   return (
     <Container>
-      <BackLink to="/">
+      <BackLink onClick={goBack}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="20"

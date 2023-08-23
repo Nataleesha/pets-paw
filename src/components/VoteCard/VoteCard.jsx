@@ -18,7 +18,7 @@ const VoteCard = ({ image }) => {
     <Container>
       <Breadcrumbs text="Voting" />
       <ImageCard>
-        <Image src={image.url} alt="cat" width="295px" height="166px" />
+        <Image src={image.url} alt="cat" />
         <ButtonList>
           <ButtonListItem>
             <ButtonLike type="button">

@@ -4,11 +4,15 @@ export const Container = styled.div``;
 
 export const ImageCard = styled.div`
   position: relative;
+  width: 295px;
+  height: 166px;
 `;
 
 export const Image = styled.img`
-  object-fit: fill;
+  object-fit: cover;
   border-radius: 20px;
+  width: 100%;
+  height: 100%;
 `;
 
 export const ButtonList = styled.ul`

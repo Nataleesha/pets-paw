@@ -1,5 +1,4 @@
 import { styled } from "styled-components";
-import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   display: inline-flex;
@@ -7,9 +6,10 @@ export const Container = styled.div`
   margin-bottom: 10px;
 `;
 
-export const BackLink = styled(Link)`
+export const BackLink = styled.button`
   width: 40px;
   height: 40px;
+  border: transparent;
   border-radius: 10px;
   display: flex;
   justify-content: center;
