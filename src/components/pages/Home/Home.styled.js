@@ -2,7 +2,6 @@ import { styled } from "styled-components";
 import { Link } from "react-router-dom";
 
 export const Logo = styled.img`
-  padding-top: 20px;
   margin-bottom: 80px;
 `;
 
@@ -57,6 +56,6 @@ export const NavItemLink = styled(Link)`
   &:active {
     transition: 0.2s all;
     background-color: var(--primary);
-    color: var(--color-white);
+    color: var(--white);
   }
 `;

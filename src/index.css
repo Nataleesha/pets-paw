@@ -7,6 +7,10 @@
   --primary: #ff868e;
   --primary-light: #fbe0dc;
   --white: #fff;
+  --green: #97eab9;
+  --green-light: #e0f9ea;
+  --orange: #ffd280;
+  --orange-light: #fff1d9;
 }
 
 body {
@@ -14,6 +18,7 @@ body {
   line-height: normal;
   font-weight: 400;
   color: var(--text-light);
+  fill: currentColor;
 
   margin: 0;
   box-sizing: border-box;
