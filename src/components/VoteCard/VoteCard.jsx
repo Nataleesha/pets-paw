@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import Loader from "src/components/Loader/Loader";
 
 import Breadcrumbs from "src/components/Breadcrumbs/Breadcrumbs";
 
@@ -13,15 +14,25 @@ import {
   ButtonDislike,
 } from "./VoteCard.styled";
 
-const VoteCard = ({ image }) => {
+const VoteCard = ({ image, vote }) => {
   return (
     <Container>
       <Breadcrumbs text="Voting" />
       <ImageCard>
-        <Image src={image.url} alt="cat" />
+        {!image.url ? (
+          <Loader />
+        ) : (
+          <Image
+            src={image.url}
+            alt="cat"
+            loading="lazy"
+            width="100%"
+            height="auto"
+          />
+        )}
         <ButtonList>
           <ButtonListItem>
-            <ButtonLike type="button">
+            <ButtonLike type="button" onClick={() => vote(1)}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
@@ -72,7 +83,7 @@ const VoteCard = ({ image }) => {
             </ButtonFav>
           </ButtonListItem>
           <ButtonListItem>
-            <ButtonDislike type="button">
+            <ButtonDislike type="button" onClick={() => vote(-1)}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
@@ -106,4 +117,5 @@ export default VoteCard;
 
 VoteCard.propTypes = {
   image: PropTypes.object.isRequired,
+  vote: PropTypes.func.isRequired,
 };

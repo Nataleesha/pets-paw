@@ -8,6 +8,7 @@ export const ImageCard = styled.div`
   position: relative;
   margin-top: 10px;
   width: 100%;
+  min-height: 160px;
 `;
 
 export const Image = styled.img`
