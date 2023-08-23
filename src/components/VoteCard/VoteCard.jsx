@@ -14,7 +14,7 @@ import {
   ButtonDislike,
 } from "./VoteCard.styled";
 
-const VoteCard = ({ image, vote }) => {
+const VoteCard = ({ image, vote, favorites, setFavorite, removeFav }) => {
   return (
     <Container>
       <Breadcrumbs text="Voting" />
@@ -50,8 +50,8 @@ const VoteCard = ({ image, vote }) => {
             </ButtonLike>
           </ButtonListItem>
           <ButtonListItem>
-            <ButtonFav type="button">
-              {!image.favorite ? (
+            {!favorites.some((favorite) => favorite.image_id === image.id) ? (
+              <ButtonFav type="button" onClick={setFavorite}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
@@ -66,7 +66,9 @@ const VoteCard = ({ image, vote }) => {
                     fill="currentColor"
                   />
                 </svg>
-              ) : (
+              </ButtonFav>
+            ) : (
+              <ButtonFav type="button" onClick={removeFav}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
@@ -79,8 +81,8 @@ const VoteCard = ({ image, vote }) => {
                     fill="white"
                   />
                 </svg>
-              )}
-            </ButtonFav>
+              </ButtonFav>
+            )}
           </ButtonListItem>
           <ButtonListItem>
             <ButtonDislike type="button" onClick={() => vote(-1)}>
@@ -118,4 +120,7 @@ export default VoteCard;
 VoteCard.propTypes = {
   image: PropTypes.object.isRequired,
   vote: PropTypes.func.isRequired,
+  favorites: PropTypes.array.isRequired,
+  setFavorite: PropTypes.func.isRequired,
+  removeFav: PropTypes.func.isRequired,
 };

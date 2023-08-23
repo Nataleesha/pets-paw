@@ -1,23 +1,20 @@
 import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 
 import Menu from "src/components/Menu/Menu";
 import VoteCard from "src/components/VoteCard/VoteCard";
 import VoteHistory from "src/components/VoteHistory/VoteHistory";
 
-import { getData, voteOnImage } from "src/utils/api";
+import { getData, voteOnImage, favoriteDelete } from "src/utils/api";
 
 import { Container } from "./Voting.styled";
 
-const Voting = () => {
+const Voting = ({ userID }) => {
   const [image, setImage] = useState({});
   const [voteHistory, setVoteHistory] = useState([]);
+  const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
-    const fetchImageToVote = async () => {
-      const res = await getData("images/search");
-      setImage(res.data[0]);
-    };
-
     fetchImageToVote();
 
     if (!localStorage.getItem("historyVote")) {
@@ -26,11 +23,24 @@ const Voting = () => {
       const savedVoteHistory = localStorage.getItem("historyVote");
       setVoteHistory(JSON.parse(savedVoteHistory));
     }
-  }, []);
+
+    const getAllFavorites = async () => {
+      const res = await getData(`favourites?sub_id=${userID}&order=DESC`);
+      setFavorites(res.data);
+    };
+
+    getAllFavorites();
+  }, [userID]);
+
+  const fetchImageToVote = async () => {
+    const res = await getData("images/search");
+    setImage(res.data[0]);
+  };
 
   const vote = async (value) => {
     const body = {
       image_id: image.id,
+      sub_id: userID,
       value,
     };
 
@@ -38,7 +48,8 @@ const Voting = () => {
 
     const newVote = {
       id: voteResult.data.image_id,
-      action: voteResult.data.value,
+      action:
+        voteResult.data.value === 1 ? "added to Likes" : "added to Dislikes",
       time: getCurrentTime(),
     };
 
@@ -49,6 +60,53 @@ const Voting = () => {
     const storageItem = JSON.parse(localStorage.getItem("historyVote"));
     storageItem.push(newVote);
     localStorage.setItem("historyVote", JSON.stringify(storageItem));
+
+    fetchImageToVote();
+  };
+
+  const setFavorite = async () => {
+    const body = {
+      image_id: image.id,
+      sub_id: userID,
+    };
+
+    const favoriteResult = await voteOnImage("favourites", body);
+
+    const newFav = {
+      id: favoriteResult.data.id,
+      image_id: image.id,
+      sub_id: userID,
+    };
+
+    setFavorites([...favorites, newFav]);
+
+    const newVote = {
+      id: image.id,
+      action: "added to Favourites",
+      time: getCurrentTime(),
+    };
+
+    setVoteHistory((voteHistory) => [newVote, ...voteHistory]);
+  };
+
+  const removeFavorite = async () => {
+    const favToRemove = favorites.find((fav) => fav.image_id === image.id);
+
+    await favoriteDelete(`favourites/${favToRemove.id}`);
+
+    const filteredFavorites = favorites.filter(
+      (fav) => fav.id !== favToRemove.id
+    );
+
+    setFavorites(filteredFavorites);
+
+    const newVote = {
+      id: image.id,
+      action: "removed from Favourites",
+      time: getCurrentTime(),
+    };
+
+    setVoteHistory((voteHistory) => [newVote, ...voteHistory]);
   };
 
   const getCurrentTime = () => {
@@ -62,7 +120,13 @@ const Voting = () => {
     <>
       <Menu />
       <Container>
-        <VoteCard image={image} vote={vote} />
+        <VoteCard
+          image={image}
+          vote={vote}
+          favorites={favorites}
+          setFavorite={setFavorite}
+          removeFav={removeFavorite}
+        />
         <VoteHistory history={voteHistory} />
       </Container>
     </>
@@ -70,3 +134,7 @@ const Voting = () => {
 };
 
 export default Voting;
+
+Voting.propTypes = {
+  userID: PropTypes.string.isRequired,
+};
