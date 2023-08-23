@@ -53,13 +53,13 @@ const Voting = ({ userID }) => {
       time: getCurrentTime(),
     };
 
-    console.log(newVote);
-
     setVoteHistory((voteHistory) => [newVote, ...voteHistory]);
 
     const storageItem = JSON.parse(localStorage.getItem("historyVote"));
     storageItem.push(newVote);
     localStorage.setItem("historyVote", JSON.stringify(storageItem));
+
+    setImage({});
 
     fetchImageToVote();
   };

@@ -9,6 +9,7 @@ const Loader = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        paddingTop: "40px",
       }}
     >
       <Oval
