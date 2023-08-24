@@ -22,7 +22,7 @@ const Home = () => {
           <NavItemLink to="/voting">Voting</NavItemLink>
         </NavItem>
         <NavItem>
-          <NavItemLink to="">Breeds</NavItemLink>
+          <NavItemLink to="/breeds">Breeds</NavItemLink>
         </NavItem>
         <NavItem>
           <NavItemLink to="">Gallery</NavItemLink>

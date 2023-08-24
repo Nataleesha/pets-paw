@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { mobile, tablet, desktop } from "./components/constants/breakpoints";
+import { mobile, tablet, desktop } from "./constants/breakpoints";
 
 export const Container = styled.div`
   width: calc(${mobile} - 40px);
