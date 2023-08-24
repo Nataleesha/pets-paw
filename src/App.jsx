@@ -5,6 +5,7 @@ import { nanoid } from "nanoid";
 import Home from "./components/pages/Home/Home";
 import Voting from "./components/pages/Voting/Voting";
 import Breeds from "./components/pages/Breeds/Breeds";
+import BreedDetails from "./components/pages/BreedDetails/BreedDetails";
 
 import { Container } from "./App.styled";
 
@@ -26,6 +27,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="voting" element={<Voting userID={userID} />} />
         <Route path="breeds" element={<Breeds />} />
+        <Route path="breeds/:breedId" element={<BreedDetails />} />
         <Route path="*" element={<Home />} />
       </Routes>
     </Container>

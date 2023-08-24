@@ -24,8 +24,6 @@ const Breeds = () => {
       };
     });
 
-    console.log(breedsInfo);
-
     setBreeds(breedsInfo);
   };
 

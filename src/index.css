@@ -11,6 +11,7 @@
   --green-light: #e0f9ea;
   --orange: #ffd280;
   --orange-light: #fff1d9;
+  --overlay-hover: rgba(255, 134, 142, 0.6);
 }
 
 body {

@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import { getData } from "src/utils/api";
 import Breadcrumbs from "src/components/Breadcrumbs/Breadcrumbs";
+import Loader from "../Loader/Loader";
 
 import {
   Select,
@@ -10,7 +12,6 @@ import {
   AbcSort,
   Grid,
   ImageContainer,
-  ImageLink,
   Image,
   ImageOverlay,
   TextOverlay,
@@ -24,7 +25,6 @@ const BreedsFilter = ({ breeds }) => {
   useEffect(() => {
     const getImages = async () => {
       const res = await getData("images/search?limit=20&has_breeds=1");
-      console.log(res.data);
       setImages(res.data);
     };
 
@@ -32,20 +32,45 @@ const BreedsFilter = ({ breeds }) => {
   }, []);
 
   const handleBreedSelect = (e) => {
-    console.log(e.target.value);
     setSelectedBreed(e.target.value);
+    const breedImages = async () => {
+      const res = e.target.value
+        ? await getData(
+            `images/search?limit=20&has_breeds=1&breed_ids=${e.target.value}`
+          )
+        : await getData("images/search?limit=20&has_breeds=1");
+      setImages(res.data);
+    };
+    breedImages();
   };
 
   const handleLimitSelect = (e) => {
-    console.log(e.target.value);
     setLimit(e.target.value);
+  };
+
+  const abcSort = () => {
+    const sorted = [...images].sort((a, b) => {
+      const breedA = a.breeds[0].name.toLowerCase();
+      const breedB = b.breeds[0].name.toLowerCase();
+      return breedA < breedB ? -1 : breedA > breedB ? 1 : 0;
+    });
+    setImages(sorted);
+  };
+
+  const abcSortReversed = () => {
+    const sorted = [...images].sort((a, b) => {
+      const breedA = a.breeds[0].name.toLowerCase();
+      const breedB = b.breeds[0].name.toLowerCase();
+      return breedA > breedB ? -1 : breedA < breedB ? 1 : 0;
+    });
+    setImages(sorted);
   };
 
   return (
     <>
       <Breadcrumbs text="Breeds" />
       <Select name="breeds" value={selectedBreed} onChange={handleBreedSelect}>
-        <option>All breeds</option>
+        <option value="">All breeds</option>
         {!breeds
           ? null
           : breeds.map((breed) => {
@@ -63,7 +88,7 @@ const BreedsFilter = ({ breeds }) => {
           <option value="15">Limit: 15</option>
           <option value="20">Limit: 20</option>
         </Select>
-        <AbcSort>
+        <AbcSort type="button" onClick={abcSort}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="19"
@@ -79,7 +104,7 @@ const BreedsFilter = ({ breeds }) => {
             />
           </svg>
         </AbcSort>
-        <AbcSort>
+        <AbcSort type="button" onClick={abcSortReversed}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="19"
@@ -97,19 +122,26 @@ const BreedsFilter = ({ breeds }) => {
         </AbcSort>
       </SortContainer>
       <Grid>
-        {images.length &&
-          images.map((image) => {
+        {!images.length ? (
+          <Loader />
+        ) : (
+          images.slice(0, limit).map((image) => {
             return (
               <ImageContainer key={image.id}>
-                <ImageLink>
-                  <Image src={image.url} alt={image.breeds[0].name} />
+                <Link to={`/breeds/${image.breeds[0].id}`}>
+                  <Image
+                    src={image.url}
+                    alt={image.breeds[0].name}
+                    loading="lazy"
+                  />
                   <ImageOverlay>
                     <TextOverlay>{image.breeds[0].name}</TextOverlay>
                   </ImageOverlay>
-                </ImageLink>
+                </Link>
               </ImageContainer>
             );
-          })}
+          })
+        )}
       </Grid>
     </>
   );
