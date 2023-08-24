@@ -84,4 +84,20 @@ export const Subtitle = styled.p`
 export const InfoHolder = styled.div`
   display: flex;
   flex-direction: column;
+  text-align: left;
+`;
+
+export const Temper = styled.div`
+  margin-bottom: 10px;
+`;
+
+export const Params = styled.div``;
+
+export const Bold = styled.p`
+  color: var(--text-dark);
+  font-weight: 500;
+`;
+
+export const DescrHolder = styled.div`
+  margin-bottom: 10px;
 `;

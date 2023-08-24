@@ -18,6 +18,10 @@ import {
   Title,
   Subtitle,
   InfoHolder,
+  Temper,
+  Params,
+  Bold,
+  DescrHolder,
 } from "./BreedDetails.styled";
 
 const BreedDetails = () => {
@@ -27,7 +31,6 @@ const BreedDetails = () => {
   useEffect(() => {
     const getBreedInfo = async () => {
       const res = await getData(`images/search?limit=5&breed_ids=${breedId}`);
-      console.log(res.data);
       setInfo(res.data);
     };
 
@@ -53,6 +56,7 @@ const BreedDetails = () => {
             className="swiper"
             pagination={{
               el: ".swiper-custom-pagination",
+              clickable: true,
             }}
             modules={[Pagination]}
           >
@@ -81,7 +85,26 @@ const BreedDetails = () => {
           <Description>
             <Title>{info[0].breeds[0].name}</Title>
             <Subtitle>{info[0].breeds[0]["alt_names"]}</Subtitle>
-            <InfoHolder></InfoHolder>
+            <InfoHolder>
+              <Temper>
+                <Bold>Temperament: </Bold>
+                <p>{info[0].breeds[0].temperament}</p>
+              </Temper>
+              <Params>
+                <DescrHolder>
+                  <Bold>Origin: </Bold>
+                  <p>{info[0].breeds[0].origin}</p>
+                </DescrHolder>
+                <DescrHolder>
+                  <Bold>Weight: </Bold>
+                  <p>{info[0].breeds[0].weight.metric} kgs</p>
+                </DescrHolder>
+                <DescrHolder>
+                  <Bold>Life span: </Bold>
+                  <p>{info[0].breeds[0]["life_span"]} years</p>
+                </DescrHolder>
+              </Params>
+            </InfoHolder>
           </Description>
         )}
       </Container>
