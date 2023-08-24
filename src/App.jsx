@@ -28,6 +28,7 @@ const App = () => {
         <Route path="voting" element={<Voting userID={userID} />} />
         <Route path="breeds" element={<Breeds />} />
         <Route path="breeds/:breedId" element={<BreedDetails />} />
+        <Route path="gallery" element={"Gallery"} />
         <Route path="*" element={<Home />} />
       </Routes>
     </Container>

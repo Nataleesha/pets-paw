@@ -1,3 +1,7 @@
+import { useState } from "react";
+
+import Modal from "src/components/Modal/Modal";
+
 import {
   Container,
   MenuButton,
@@ -9,10 +13,17 @@ import {
 } from "./Menu.styled";
 
 const Menu = () => {
+  const [openModal, setOpenModal] = useState(false);
+
+  const toggleModal = () => {
+    console.log("toggle");
+    setOpenModal((openModal) => !openModal);
+  };
+
   return (
     <>
       <Container>
-        <MenuButton type="button">
+        <MenuButton type="button" onClick={toggleModal}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="30"
@@ -111,6 +122,7 @@ const Menu = () => {
           </svg>
         </SearchButton>
       </Form>
+      {openModal ? <Modal toggleModal={toggleModal} /> : null}
     </>
   );
 };

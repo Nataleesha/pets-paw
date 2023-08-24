@@ -34,6 +34,7 @@ const BreedsFilter = ({ breeds }) => {
   const handleBreedSelect = (e) => {
     setSelectedBreed(e.target.value);
     const breedImages = async () => {
+      setImages([]);
       const res = e.target.value
         ? await getData(
             `images/search?limit=20&has_breeds=1&breed_ids=${e.target.value}`

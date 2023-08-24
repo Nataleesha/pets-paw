@@ -1,14 +1,8 @@
+import Navigation from "src/components/Navigation/Navigation";
+
 import logo from "src/assets/images/logo.png";
 
-import {
-  Logo,
-  Header,
-  Greeting,
-  SubHeader,
-  Nav,
-  NavItem,
-  NavItemLink,
-} from "./Home.styled";
+import { Logo, Header, Greeting, SubHeader } from "./Home.styled";
 
 const Home = () => {
   return (
@@ -17,17 +11,7 @@ const Home = () => {
       <Header>Hi! 👋</Header>
       <Greeting>Welcome to MacPaw Bootcamp 2023</Greeting>
       <SubHeader>Lets start using The Cat API</SubHeader>
-      <Nav>
-        <NavItem>
-          <NavItemLink to="/voting">Voting</NavItemLink>
-        </NavItem>
-        <NavItem>
-          <NavItemLink to="/breeds">Breeds</NavItemLink>
-        </NavItem>
-        <NavItem>
-          <NavItemLink to="">Gallery</NavItemLink>
-        </NavItem>
-      </Nav>
+      <Navigation />
     </div>
   );
 };
