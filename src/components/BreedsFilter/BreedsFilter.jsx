@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 import { getData } from "src/utils/api";
 import Breadcrumbs from "src/components/Breadcrumbs/Breadcrumbs";
-import Loader from "../Loader/Loader";
+import Loader from "src/components/Loader/Loader";
 
 import {
   Select,

@@ -12,6 +12,8 @@
   --orange: #ffd280;
   --orange-light: #fff1d9;
   --overlay-hover: rgba(255, 134, 142, 0.6);
+  --swiper-theme-color: var(--primary);
+  --swiper-pagination-bullet-inactive-color: var(--primary-light);
 }
 
 body {
@@ -54,4 +56,26 @@ button {
 
 a {
   text-decoration: none;
+}
+
+.swiper-custom-pagination.swiper-pagination-bullets.swiper-pagination-horizontal {
+  position: absolute;
+  width: 90px;
+  height: 30px;
+  bottom: -25px;
+  left: 94px;
+  text-align: center;
+  background-color: var(--white);
+  border-radius: 20px;
+  padding: 5px;
+  z-index: 2;
+  overflow: visible;
+}
+
+.swiper-pagination-horizontal.swiper-pagination-bullets
+  .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  margin: 3px;
+  opacity: 1;
 }
