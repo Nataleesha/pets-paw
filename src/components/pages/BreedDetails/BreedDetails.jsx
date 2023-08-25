@@ -45,67 +45,69 @@ const BreedDetails = () => {
           <Breadcrumbs text="Breeds" />
           <BreedId>{breedId}</BreedId>
         </BreadcrumbsContainer>
-        <div
-          style={{
-            position: "relative",
-            marginTop: "10px",
-            marginBottom: "50px",
-          }}
-        >
-          <SwiperContainer
-            className="swiper"
-            pagination={{
-              el: ".swiper-custom-pagination",
-              clickable: true,
-            }}
-            modules={[Pagination]}
-          >
-            {!info.length ? (
-              <Loader />
-            ) : (
-              info.map((obj) => {
-                return (
-                  <SwiperItem className="swiper-slide" key={obj.id}>
-                    <Image
-                      src={obj.url}
-                      alt={obj.breeds[0].name}
-                      width="100%"
-                      height="170px"
-                    />
-                  </SwiperItem>
-                );
-              })
-            )}
-          </SwiperContainer>
-          <div className="swiper-custom-pagination" />
-        </div>
         {!info.length ? (
           <Loader />
         ) : (
-          <Description>
-            <Title>{info[0].breeds[0].name}</Title>
-            <Subtitle>{info[0].breeds[0]["alt_names"]}</Subtitle>
-            <InfoHolder>
-              <Temper>
-                <Bold>Temperament: </Bold>
-                <p>{info[0].breeds[0].temperament}</p>
-              </Temper>
-              <Params>
-                <DescrHolder>
-                  <Bold>Origin: </Bold>
-                  <p>{info[0].breeds[0].origin}</p>
-                </DescrHolder>
-                <DescrHolder>
-                  <Bold>Weight: </Bold>
-                  <p>{info[0].breeds[0].weight.metric} kgs</p>
-                </DescrHolder>
-                <DescrHolder>
-                  <Bold>Life span: </Bold>
-                  <p>{info[0].breeds[0]["life_span"]} years</p>
-                </DescrHolder>
-              </Params>
-            </InfoHolder>
-          </Description>
+          <>
+            <div
+              style={{
+                position: "relative",
+                marginTop: "10px",
+                marginBottom: "50px",
+              }}
+            >
+              <SwiperContainer
+                className="swiper"
+                pagination={{
+                  el: ".swiper-custom-pagination",
+                  clickable: true,
+                }}
+                modules={[Pagination]}
+              >
+                {!info.length ? (
+                  <Loader />
+                ) : (
+                  info.map((obj) => {
+                    return (
+                      <SwiperItem className="swiper-slide" key={obj.id}>
+                        <Image
+                          src={obj.url}
+                          alt={obj.breeds[0].name}
+                          width="100%"
+                          height="170px"
+                        />
+                      </SwiperItem>
+                    );
+                  })
+                )}
+              </SwiperContainer>
+              <div className="swiper-custom-pagination" />
+            </div>
+            <Description>
+              <Title>{info[0].breeds[0].name}</Title>
+              <Subtitle>{info[0].breeds[0]["alt_names"]}</Subtitle>
+              <InfoHolder>
+                <Temper>
+                  <Bold>Temperament: </Bold>
+                  <p>{info[0].breeds[0].temperament}</p>
+                </Temper>
+                <Params>
+                  <DescrHolder>
+                    <Bold>Origin: </Bold>
+                    <p>{info[0].breeds[0].origin}</p>
+                  </DescrHolder>
+                  <DescrHolder>
+                    <Bold>Weight: </Bold>
+                    <p>{info[0].breeds[0].weight.metric} kgs</p>
+                  </DescrHolder>
+                  <DescrHolder>
+                    <Bold>Life span: </Bold>
+                    <p>{info[0].breeds[0]["life_span"]} years</p>
+                  </DescrHolder>
+                </Params>
+              </InfoHolder>
+            </Description>
+          </>
         )}
       </Container>
     </>

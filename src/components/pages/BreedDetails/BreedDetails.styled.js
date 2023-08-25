@@ -75,6 +75,7 @@ export const Title = styled.h3`
   transform: translateX(50%);
   background-color: var(--white);
   padding: 0 20px;
+  white-space: nowrap;
 `;
 
 export const Subtitle = styled.p`

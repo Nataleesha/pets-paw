@@ -15,8 +15,13 @@ import {
 const Menu = () => {
   const [openModal, setOpenModal] = useState(false);
 
+  if (openModal) {
+    document.body.classList.add("no-overflow");
+  } else {
+    document.body.classList.remove("no-overflow");
+  }
+
   const toggleModal = () => {
-    console.log("toggle");
     setOpenModal((openModal) => !openModal);
   };
 
