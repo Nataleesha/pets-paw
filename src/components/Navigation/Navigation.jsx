@@ -10,7 +10,7 @@ const Navigation = () => {
         <NavItemLink to="/breeds">Breeds</NavItemLink>
       </NavItem>
       <NavItem>
-        <NavItemLink to="gallery">Gallery</NavItemLink>
+        <NavItemLink to="/gallery">Gallery</NavItemLink>
       </NavItem>
     </Nav>
   );

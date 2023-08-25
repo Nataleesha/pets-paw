@@ -6,6 +6,7 @@ import Home from "./components/pages/Home/Home";
 import Voting from "./components/pages/Voting/Voting";
 import Breeds from "./components/pages/Breeds/Breeds";
 import BreedDetails from "./components/pages/BreedDetails/BreedDetails";
+import Gallery from "./components/pages/Gallery/Gallery";
 import Likes from "./components/pages/Likes/Likes";
 import Dislikes from "./components/pages/Dislikes/Dislikes";
 import Favourites from "./components/pages/Favourites/Favourites";
@@ -32,7 +33,7 @@ const App = () => {
         <Route path="voting" element={<Voting userID={userID} />} />
         <Route path="breeds" element={<Breeds />} />
         <Route path="breeds/:breedId" element={<BreedDetails />} />
-        <Route path="gallery" element={"Gallery"} />
+        <Route path="gallery" element={<Gallery userID={userID} />} />
         <Route path="likes" element={<Likes />} />
         <Route path="dislikes" element={<Dislikes />} />
         <Route path="favourites" element={<Favourites />} />

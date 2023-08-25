@@ -12,6 +12,7 @@ export const Select = styled.select`
   font-weight: 400;
   line-height: 24px;
   outline: none;
+  cursor: pointer;
 
   &:hover {
     border-color: var(--primary-light);
