@@ -6,6 +6,7 @@ import VoteCard from "src/components/VoteCard/VoteCard";
 import VoteHistory from "src/components/VoteHistory/VoteHistory";
 
 import { getData, voteOnImage, favoriteDelete } from "src/utils/api";
+import { getCurrentTime } from "src/utils/currentTime";
 
 import { Container } from "./Voting.styled";
 
@@ -65,7 +66,7 @@ const Voting = ({ userID }) => {
     fetchImageToVote();
   };
 
-  const setFavorite = async () => {
+  const setFavorite = async (image) => {
     const body = {
       image_id: image.id,
       sub_id: userID,
@@ -109,16 +110,6 @@ const Voting = ({ userID }) => {
     };
 
     setVoteHistory((voteHistory) => [newVote, ...voteHistory]);
-  };
-
-  const getCurrentTime = () => {
-    const now = new Date();
-    const hours = now.getHours();
-    let minutes = now.getMinutes();
-    if (minutes.length === 1) {
-      minutes = `0${minutes}`;
-    }
-    return `${hours}:${minutes}`;
   };
 
   return (
