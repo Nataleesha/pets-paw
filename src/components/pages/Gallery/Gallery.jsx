@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import { getData, voteOnImage, favoriteDelete } from "src/utils/api";
 import { getCurrentTime } from "src/utils/currentTime";
+import { addFavToLocalStorage } from "src/utils/storage";
 
 import Menu from "src/components/Menu/Menu";
 import Breadcrumbs from "src/components/Breadcrumbs/Breadcrumbs";
@@ -29,7 +30,7 @@ const Gallery = ({ userID }) => {
   const [data, setData] = useState([]);
   const [breeds, setBreeds] = useState([]);
   const [favorites, setFavorites] = useState([]);
-  const [voteHistory, setVoteHistory] = useState([]);
+  const [, setVoteHistory] = useState([]);
 
   const [order, setOrder] = useState("RANDOM");
   const [type, setType] = useState("jpg,png");
@@ -89,9 +90,7 @@ const Gallery = ({ userID }) => {
 
     setVoteHistory((voteHistory) => [newVote, ...voteHistory]);
 
-    const storageItem = JSON.parse(localStorage.getItem("historyVote"));
-    storageItem.unshift(newVote);
-    localStorage.setItem("historyVote", JSON.stringify(storageItem));
+    addFavToLocalStorage(newVote);
   };
 
   const removeFavorite = async (image) => {
@@ -112,6 +111,8 @@ const Gallery = ({ userID }) => {
     };
 
     setVoteHistory((voteHistory) => [newVote, ...voteHistory]);
+
+    addFavToLocalStorage(newVote);
   };
 
   const handleOrderSelect = (e) => {

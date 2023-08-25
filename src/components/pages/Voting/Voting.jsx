@@ -7,6 +7,7 @@ import VoteHistory from "src/components/VoteHistory/VoteHistory";
 
 import { getData, voteOnImage, favoriteDelete } from "src/utils/api";
 import { getCurrentTime } from "src/utils/currentTime";
+import { addFavToLocalStorage } from "src/utils/storage";
 
 import { Container } from "./Voting.styled";
 
@@ -66,7 +67,7 @@ const Voting = ({ userID }) => {
     fetchImageToVote();
   };
 
-  const setFavorite = async (image) => {
+  const setFavorite = async () => {
     const body = {
       image_id: image.id,
       sub_id: userID,
@@ -90,6 +91,12 @@ const Voting = ({ userID }) => {
     };
 
     setVoteHistory((voteHistory) => [newVote, ...voteHistory]);
+
+    addFavToLocalStorage(newVote);
+
+    // const storageItem = JSON.parse(localStorage.getItem("historyVote"));
+    // storageItem.unshift(newVote);
+    // localStorage.setItem("historyVote", JSON.stringify(storageItem));
   };
 
   const removeFavorite = async () => {
@@ -110,6 +117,8 @@ const Voting = ({ userID }) => {
     };
 
     setVoteHistory((voteHistory) => [newVote, ...voteHistory]);
+
+    addFavToLocalStorage(newVote);
   };
 
   return (
