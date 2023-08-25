@@ -6,6 +6,10 @@ import Home from "./components/pages/Home/Home";
 import Voting from "./components/pages/Voting/Voting";
 import Breeds from "./components/pages/Breeds/Breeds";
 import BreedDetails from "./components/pages/BreedDetails/BreedDetails";
+import Likes from "./components/pages/Likes/Likes";
+import Dislikes from "./components/pages/Dislikes/Dislikes";
+import Favourites from "./components/pages/Favourites/Favourites";
+import SearchByName from "./components/pages/SearchByName/SearchByName";
 
 import { Container } from "./App.styled";
 
@@ -29,6 +33,10 @@ const App = () => {
         <Route path="breeds" element={<Breeds />} />
         <Route path="breeds/:breedId" element={<BreedDetails />} />
         <Route path="gallery" element={"Gallery"} />
+        <Route path="likes" element={<Likes />} />
+        <Route path="dislikes" element={<Dislikes />} />
+        <Route path="favourites" element={<Favourites />} />
+        <Route path="search-by-name" element={<SearchByName />} />
         <Route path="*" element={<Home />} />
       </Routes>
     </Container>

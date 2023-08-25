@@ -51,6 +51,7 @@ const Voting = ({ userID }) => {
       action:
         voteResult.data.value === 1 ? "added to Likes" : "added to Dislikes",
       time: getCurrentTime(),
+      url: image.url,
     };
 
     setVoteHistory((voteHistory) => [newVote, ...voteHistory]);
@@ -76,6 +77,7 @@ const Voting = ({ userID }) => {
       id: favoriteResult.data.id,
       image_id: image.id,
       sub_id: userID,
+      url: image.url,
     };
 
     setFavorites([...favorites, newFav]);

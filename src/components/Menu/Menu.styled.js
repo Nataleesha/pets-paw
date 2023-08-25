@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export const Container = styled.div`
   margin-bottom: 10px;
@@ -33,7 +33,7 @@ export const ActionList = styled.ul`
   gap: 10px;
 `;
 
-export const ActionLink = styled(Link)`
+export const ActionLink = styled(NavLink)`
   width: 60px;
   height: 60px;
   display: flex;
@@ -53,6 +53,17 @@ export const ActionLink = styled(Link)`
     transition: 0.2s all;
     background-color: var(--primary);
     color: var(--white);
+  }
+
+  &.active {
+    background-color: var(--primary);
+    color: var(--white);
+
+    &:hover {
+      transition: 0.2s all;
+      background-color: var(--primary-light);
+      color: var(--primary);
+    }
   }
 `;
 

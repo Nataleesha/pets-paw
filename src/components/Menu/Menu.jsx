@@ -46,7 +46,7 @@ const Menu = () => {
         </MenuButton>
         <ActionList>
           <li>
-            <ActionLink to="/">
+            <ActionLink to="/likes">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="30"
@@ -64,7 +64,7 @@ const Menu = () => {
             </ActionLink>
           </li>
           <li>
-            <ActionLink to="/">
+            <ActionLink to="/favourites">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="30"
@@ -82,7 +82,7 @@ const Menu = () => {
             </ActionLink>
           </li>
           <li>
-            <ActionLink to="/">
+            <ActionLink to="/dislikes">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="30"
