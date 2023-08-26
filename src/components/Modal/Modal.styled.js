@@ -1,16 +1,24 @@
 import { styled } from "styled-components";
 
 export const Container = styled.div`
-  width: calc(100% - 40px);
-  height: calc(100vh - 40px);
+  width: 100vw;
+  height: 100vh;
   z-index: 3;
   opacity: 1;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: right;
   background-color: var(--background-color);
+`;
+
+export const InnerContainer = styled.div`
+  width: 335px;
+  height: calc(100% - 40px);
+  padding: 20px;
 `;
 
 export const ButtonClose = styled.button`

@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import Modal from "src/components/Modal/Modal";
+// import { toggleModal } from "src/utils/toggleModal";
 
 import {
   Container,
@@ -17,8 +18,10 @@ const Menu = () => {
 
   if (openModal) {
     document.body.classList.add("no-overflow");
-  } else {
+    document.body.dataset.modal = "menu";
+  } else if (document.body.dataset.modal === "menu") {
     document.body.classList.remove("no-overflow");
+    delete document.body.dataset.modal;
   }
 
   const toggleModal = () => {

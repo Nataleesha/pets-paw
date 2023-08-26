@@ -8,6 +8,7 @@ import { addFavToLocalStorage } from "src/utils/storage";
 import Menu from "src/components/Menu/Menu";
 import Breadcrumbs from "src/components/Breadcrumbs/Breadcrumbs";
 import Loader from "src/components/Loader/Loader";
+import UploadModal from "src/components/UploadModal/UploadModal";
 
 import {
   Container,
@@ -37,6 +38,8 @@ const Gallery = ({ userID }) => {
   const [breedSelected, setBreedSelected] = useState("");
   const [limitSelected, setLimitSelected] = useState(5);
 
+  const [openModal, setOpenModal] = useState(false);
+
   useEffect(() => {
     const fetchData = async () => {
       const res = await getData("images/search?limit=5&mime_types=jpg,png");
@@ -64,6 +67,16 @@ const Gallery = ({ userID }) => {
       setVoteHistory(JSON.parse(savedVoteHistory));
     }
   }, [userID]);
+
+  if (openModal) {
+    document.body.classList.add("no-overflow");
+  } else {
+    document.body.classList.remove("no-overflow");
+  }
+
+  const toggleModal = () => {
+    setOpenModal((openModal) => !openModal);
+  };
 
   const addFavorite = async (image) => {
     const body = {
@@ -145,7 +158,7 @@ const Gallery = ({ userID }) => {
       <Container>
         <BreadcrumbsContainer>
           <Breadcrumbs text="Gallery" />
-          <ButtonUpload type="button">
+          <ButtonUpload type="button" onClick={toggleModal}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -281,6 +294,7 @@ const Gallery = ({ userID }) => {
           )}
         </GalleryGrid>
       </Container>
+      {openModal ? <UploadModal toggleModal={toggleModal} /> : null}
     </>
   );
 };
