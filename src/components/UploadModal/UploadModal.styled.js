@@ -64,7 +64,7 @@ export const Link = styled.a`
 
 export const Uploader = styled.div`
   height: 170px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   background-image: url("src/assets/images/blank.svg");
   background-color: var(--white);
   background-repeat: no-repeat;
@@ -100,6 +100,11 @@ export const Image = styled.img`
 export const UploadButton = styled.button`
   width: 100%;
   height: 40px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   text-transform: uppercase;
   background-color: var(--primary);
   color: var(--white);
@@ -110,4 +115,22 @@ export const UploadButton = styled.button`
     background-color: var(--primary-light);
     color: var(--primary);
   }
+`;
+
+export const StatusMessage = styled.div`
+  width: calc(100% - 40px);
+  height: 60px;
+  background-color: var(--white);
+  justify-content: left;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 20px;
+  border-radius: 10px;
+`;
+
+export const StatusButton = styled.button`
+  border: none;
+  background-color: transparent;
+  cursor: default;
 `;

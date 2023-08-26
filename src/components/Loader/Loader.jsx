@@ -13,7 +13,7 @@ const Loader = () => {
       }}
     >
       <Oval
-        height={40}
+        weight={40}
         width={40}
         color="#ff868e"
         wrapperStyle={{}}

@@ -29,3 +29,14 @@ export const favoriteDelete = async (url) => {
     console.error(error);
   }
 };
+
+export const uploadImage = async (url, data) => {
+  try {
+    const response = await axios.post(url, data, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
+};

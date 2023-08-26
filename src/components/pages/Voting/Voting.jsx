@@ -93,10 +93,6 @@ const Voting = ({ userID }) => {
     setVoteHistory((voteHistory) => [newVote, ...voteHistory]);
 
     addFavToLocalStorage(newVote);
-
-    // const storageItem = JSON.parse(localStorage.getItem("historyVote"));
-    // storageItem.unshift(newVote);
-    // localStorage.setItem("historyVote", JSON.stringify(storageItem));
   };
 
   const removeFavorite = async () => {
