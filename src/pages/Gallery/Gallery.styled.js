@@ -1,4 +1,5 @@
 import { styled } from "styled-components";
+import { tablet } from "src/constants/breakpoints";
 
 export const Container = styled.div`
   padding: 20px;
@@ -10,6 +11,12 @@ export const Container = styled.div`
 export const BreadcrumbsContainer = styled.div`
   display: flex;
   flex-direction: column;
+
+  @media screen and (min-width: ${tablet}) {
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
 `;
 
 export const ButtonUpload = styled.button`
@@ -34,6 +41,10 @@ export const ButtonUpload = styled.button`
     background-color: var(--primary);
     color: var(--white);
   }
+
+  @media screen and (min-width: ${tablet}) {
+    width: 143px;
+  }
 `;
 
 export const GalleryFilters = styled.div`
@@ -41,6 +52,11 @@ export const GalleryFilters = styled.div`
   padding: 20px;
   margin-bottom: 10px;
   border-radius: 20px;
+
+  @media screen and (min-width: ${tablet}) {
+    display: flex;
+    justify-content: space-between;
+  }
 `;
 
 export const SelectContainer = styled.div``;
@@ -70,9 +86,31 @@ export const InputSelect = styled.select`
   &:hover {
     border-color: var(--primary-light);
   }
+
+  @media screen and (min-width: ${tablet}) {
+    width: 333px;
+  }
 `;
 
-export const RefreshContainer = styled.div``;
+export const RefreshContainer = styled.div`
+  @media screen and (min-width: ${tablet}) {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    gap: 20px;
+
+    & select {
+      width: 274px;
+    }
+
+    & button {
+      width: 40px;
+      height: 40px;
+      margin-top: 10px;
+    }
+  }
+`;
 
 export const RefreshButton = styled.button`
   width: 100%;
@@ -90,9 +128,38 @@ export const RefreshButton = styled.button`
     background-color: var(--primary);
     color: var(--white);
   }
+
+  @media screen and (min-width: ${tablet}) {
+    width: 40px;
+  }
 `;
 
-export const GalleryGrid = styled.div``;
+export const GalleryGrid = styled.div`
+  @media screen and (min-width: ${tablet}) {
+    margin-top: 20px;
+  }
+`;
+
+export const Group = styled.div`
+  @media screen and (min-width: ${tablet}) {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(100px, auto));
+    grid-gap: 20px;
+    grid-template-areas:
+      "left-top center-top center-right"
+      "left-top center-middle center-middle"
+      "left-bottom center-middle center-middle";
+
+    margin-bottom: 20px;
+
+    &:nth-child(even) {
+      grid-template-areas:
+        "center-right center-top left-top  "
+        "center-middle center-middle left-top"
+        "center-middle center-middle left-bottom";
+    }
+  }
+`;
 
 export const ImageContainer = styled.div`
   position: relative;
@@ -103,6 +170,43 @@ export const ImageContainer = styled.div`
   &:hover div {
     transition: 0.5s ease;
     opacity: 1;
+  }
+
+  @media screen and (min-width: ${tablet}) {
+    padding: 0;
+    margin: 0;
+
+    &:nth-child(1) {
+      grid-area: left-top;
+      /* width: 230px; */
+      height: 310px;
+    }
+    &:nth-child(2) {
+      grid-area: center-top;
+      /* width: 230px; */
+      height: 150px;
+    }
+    &:nth-child(3) {
+      grid-area: center-right;
+      /* width: 230px; */
+      height: 150px;
+    }
+    &:nth-child(4) {
+      grid-area: center-middle;
+      /* width: 480px; */
+      height: 310px;
+    }
+    &:nth-child(5) {
+      grid-area: left-bottom;
+      /* width: 230px; */
+      height: 150px;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
 `;
 

@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { nanoid } from "nanoid";
 
 import { getData } from "src/utils/api";
+import { getGridGroups } from "src/utils/gridDivision";
 import Breadcrumbs from "src/components/Breadcrumbs/Breadcrumbs";
 import Loader from "src/components/Loader/Loader";
 
@@ -19,14 +20,6 @@ import {
   TextOverlay,
   Group,
 } from "./BreedsFilter.styled";
-
-const getGridGroups = (arr) => {
-  const groups = [];
-  for (let i = 0; i < arr.length; i += 5) {
-    groups.push(arr.slice(i, i + 5));
-  }
-  return groups;
-};
 
 const BreedsFilter = ({ breeds }) => {
   const [selectedBreed, setSelectedBreed] = useState("");

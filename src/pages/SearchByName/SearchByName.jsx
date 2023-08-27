@@ -1,7 +1,9 @@
 import { useState, useEffect, useCallback } from "react";
 import { useLocation } from "react-router-dom";
+import { nanoid } from "nanoid";
 
 import { getData } from "src/utils/api";
+import { getGridGroups } from "src/utils/gridDivision";
 
 import Menu from "src/components/Menu/Menu";
 import Breadcrumbs from "src/components/Breadcrumbs/Breadcrumbs";
@@ -12,6 +14,7 @@ import {
   Container,
   NameResults,
   Name,
+  Group,
   ImageContainer,
   Image,
   ImageOverlay,
@@ -42,7 +45,7 @@ const SearchByName = () => {
         const filteredBreedsIds = filteredBreeds.map((breed) => breed.id);
 
         const finalSearchResult = await getData(
-          `images/search?limit=10&breed_ids=${filteredBreedsIds.join()}`
+          `images/search?limit=20&breed_ids=${filteredBreedsIds.join()}`
         );
         setResult(finalSearchResult.data);
         setLoading(false);
@@ -67,14 +70,20 @@ const SearchByName = () => {
         ) : (
           <div>
             {result.length ? (
-              result.map((obj) => {
+              getGridGroups(result).map((group) => {
                 return (
-                  <ImageContainer key={obj.id}>
-                    <Image src={obj.url} alt={obj.breeds[0].name} />
-                    <ImageOverlay>
-                      <TextOverlay>{obj.breeds[0].name}</TextOverlay>
-                    </ImageOverlay>
-                  </ImageContainer>
+                  <Group key={nanoid()}>
+                    {group.map((image) => {
+                      return (
+                        <ImageContainer key={image.id}>
+                          <Image src={image.url} alt="cat" />
+                          <ImageOverlay>
+                            <TextOverlay>{image.breeds[0].name}</TextOverlay>{" "}
+                          </ImageOverlay>
+                        </ImageContainer>
+                      );
+                    })}
+                  </Group>
                 );
               })
             ) : (
