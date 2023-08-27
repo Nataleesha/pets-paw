@@ -6,11 +6,21 @@ import { getData } from "src/utils/api";
 import Menu from "src/components/Menu/Menu";
 import Breadcrumbs from "src/components/Breadcrumbs/Breadcrumbs";
 import NoItemFound from "src/components/NoItemFound/NoItemFound";
+import Loader from "src/components/Loader/Loader";
 
-import { Container, NameResults, Name } from "./SearchByName.styled";
+import {
+  Container,
+  NameResults,
+  Name,
+  ImageContainer,
+  Image,
+  ImageOverlay,
+  TextOverlay,
+} from "./SearchByName.styled";
 
 const SearchByName = () => {
   const [result, setResult] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const { state } = useLocation();
 
@@ -20,6 +30,7 @@ const SearchByName = () => {
   }, []);
 
   useEffect(() => {
+    setLoading(true);
     const fetchQuery = async () => {
       const res = await fetchBreeds();
 
@@ -34,7 +45,7 @@ const SearchByName = () => {
           `images/search?limit=10&breed_ids=${filteredBreedsIds.join()}`
         );
         setResult(finalSearchResult.data);
-        console.log(finalSearchResult.data);
+        setLoading(false);
       }
     };
 
@@ -51,15 +62,26 @@ const SearchByName = () => {
             Search results for: <Name>{state}</Name>
           </NameResults>
         )}
-        <div>
-          {result.length ? (
-            result.map((obj) => (
-              <img key={obj.id} src={obj.url} alt={obj.breeds[0].name} />
-            ))
-          ) : (
-            <NoItemFound />
-          )}
-        </div>
+        {loading ? (
+          <Loader />
+        ) : (
+          <div>
+            {result.length ? (
+              result.map((obj) => {
+                return (
+                  <ImageContainer key={obj.id}>
+                    <Image src={obj.url} alt={obj.breeds[0].name} />
+                    <ImageOverlay>
+                      <TextOverlay>{obj.breeds[0].name}</TextOverlay>
+                    </ImageOverlay>
+                  </ImageContainer>
+                );
+              })
+            ) : (
+              <NoItemFound />
+            )}
+          </div>
+        )}
       </Container>
     </div>
   );
