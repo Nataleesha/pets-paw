@@ -1,7 +1,7 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import Modal from "src/components/Modal/Modal";
-// import { toggleModal } from "src/utils/toggleModal";
 
 import {
   Container,
@@ -15,6 +15,8 @@ import {
 
 const Menu = () => {
   const [openModal, setOpenModal] = useState(false);
+  const [query, setQuerty] = useState("");
+  const navigate = useNavigate();
 
   if (openModal) {
     document.body.classList.add("no-overflow");
@@ -26,6 +28,20 @@ const Menu = () => {
 
   const toggleModal = () => {
     setOpenModal((openModal) => !openModal);
+  };
+
+  const handleSearchQuery = (e) => {
+    setQuerty(e.target.value);
+  };
+
+  const submitSearch = (e) => {
+    e.preventDefault();
+    if (query) {
+      navigate(
+        { pathname: "/search", search: `q=${query}` },
+        { state: query, replace: true }
+      );
+    }
   };
 
   return (
@@ -104,16 +120,13 @@ const Menu = () => {
           </li>
         </ActionList>
       </Container>
-      <Form
-        onSubmit={(e) => {
-          e.preventDefault();
-          console.log("Submit search");
-        }}
-      >
+      <Form onSubmit={submitSearch}>
         <SearchInput
           placeholder="Search for breeds by name"
           type="text"
           autoComplete="off"
+          value={query}
+          onChange={handleSearchQuery}
         />
         <SearchButton type="submit">
           <svg

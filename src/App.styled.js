@@ -7,7 +7,6 @@ export const Container = styled.div`
   margin: 0 auto;
   padding: 20px;
   position: relative;
-  background-color: var(--background-color);
 
   @media screen and (min-width: ${tablet}) {
     width: ${tablet};

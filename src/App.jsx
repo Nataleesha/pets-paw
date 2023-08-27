@@ -37,7 +37,7 @@ const App = () => {
         <Route path="likes" element={<Likes />} />
         <Route path="dislikes" element={<Dislikes />} />
         <Route path="favourites" element={<Favourites />} />
-        <Route path="search-by-name" element={<SearchByName />} />
+        <Route path="search" element={<SearchByName />} />
         <Route path="*" element={<Home />} />
       </Routes>
     </Container>
