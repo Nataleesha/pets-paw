@@ -1,15 +1,27 @@
 import { styled } from "styled-components";
 import { NavLink } from "react-router-dom";
+import { tablet, desktop } from "src/constants/breakpoints";
 
 export const Container = styled.div`
   margin-bottom: 10px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-end;
+  position: relative;
+
+  @media screen and (min-width: ${tablet}) {
+    flex-direction: row-reverse;
+    justify-content: right;
+    gap: 10px;
+  }
 `;
 
 export const MenuButton = styled.button`
   width: 60px;
   height: 60px;
+  position: absolute;
+  top: 0;
+  left: 0;
   border: transparent;
   border-radius: 20px;
   background-color: var(--white);
@@ -25,12 +37,21 @@ export const MenuButton = styled.button`
     background-color: var(--primary);
     color: var(--white);
   }
+
+  @media screen and (min-width: ${desktop}) {
+    display: none;
+  }
 `;
 
 export const ActionList = styled.ul`
   display: flex;
   flex-direction: row;
   gap: 10px;
+  margin-bottom: 10px;
+
+  @media screen and (min-width: ${tablet}) {
+    margin: 0;
+  }
 `;
 
 export const ActionLink = styled(NavLink)`
@@ -68,9 +89,11 @@ export const ActionLink = styled(NavLink)`
 `;
 
 export const Form = styled.form`
-  margin-bottom: 10px;
   width: 100%;
   position: relative;
+  @media screen and (min-width: ${tablet}) {
+    width: auto;
+  }
 `;
 
 export const SearchInput = styled.input`
@@ -90,6 +113,10 @@ export const SearchInput = styled.input`
 
   &:focus {
     border-color: var(--primary);
+  }
+
+  @media screen and (min-width: ${tablet}) {
+    width: 464px;
   }
 `;
 

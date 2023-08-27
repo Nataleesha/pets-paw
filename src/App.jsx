@@ -2,15 +2,15 @@ import { Route, Routes } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { nanoid } from "nanoid";
 
-import Home from "./components/pages/Home/Home";
-import Voting from "./components/pages/Voting/Voting";
-import Breeds from "./components/pages/Breeds/Breeds";
-import BreedDetails from "./components/pages/BreedDetails/BreedDetails";
-import Gallery from "./components/pages/Gallery/Gallery";
-import Likes from "./components/pages/Likes/Likes";
-import Dislikes from "./components/pages/Dislikes/Dislikes";
-import Favourites from "./components/pages/Favourites/Favourites";
-import SearchByName from "./components/pages/SearchByName/SearchByName";
+import Home from "./pages/Home/Home";
+import Voting from "./pages/Voting/Voting";
+import Breeds from "./pages/Breeds/Breeds";
+import BreedDetails from "./pages/BreedDetails/BreedDetails";
+import Gallery from "./pages/Gallery/Gallery";
+import Likes from "./pages/Likes/Likes";
+import Dislikes from "./pages/Dislikes/Dislikes";
+import Favourites from "./pages/Favourites/Favourites";
+import SearchByName from "./pages/SearchByName/SearchByName";
 
 import { Container } from "./App.styled";
 
