@@ -1,4 +1,5 @@
 import { styled } from "styled-components";
+import { tablet } from "src/constants/breakpoints";
 
 export const Container = styled.div`
   width: 100vw;
@@ -19,6 +20,10 @@ export const InnerContainer = styled.div`
   width: 335px;
   height: calc(100% - 40px);
   padding: 20px;
+
+  @media screen and (min-width: ${tablet}) {
+    width: ${tablet};
+  }
 `;
 
 export const ButtonClose = styled.button`

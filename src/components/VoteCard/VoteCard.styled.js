@@ -1,4 +1,5 @@
 import { styled } from "styled-components";
+import { tablet } from "src/constants/breakpoints";
 
 export const Container = styled.div`
   margin-bottom: 45px;
@@ -26,6 +27,10 @@ export const ButtonList = styled.ul`
   border: 5px solid var(--white);
   border-radius: 20px;
   background-color: var(--white);
+
+  @media screen and (min-width: ${tablet}) {
+    left: 246px;
+  }
 `;
 
 export const ButtonListItem = styled.li``;
@@ -43,6 +48,16 @@ export const ButtonLike = styled.button`
     background-color: var(--green-light);
     color: var(--green);
   }
+
+  @media screen and (min-width: ${tablet}) {
+    height: 76px;
+    width: 76px;
+
+    & svg {
+      width: 30px;
+      height: 30px;
+    }
+  }
 `;
 
 export const ButtonFav = styled.button`
@@ -58,6 +73,16 @@ export const ButtonFav = styled.button`
     background-color: var(--primary-light);
     color: var(--primary);
   }
+
+  @media screen and (min-width: ${tablet}) {
+    height: 76px;
+    width: 82px;
+
+    & svg {
+      width: 30px;
+      height: 30px;
+    }
+  }
 `;
 
 export const ButtonDislike = styled.button`
@@ -72,5 +97,15 @@ export const ButtonDislike = styled.button`
   &:hover {
     background-color: var(--orange-light);
     color: var(--orange);
+  }
+
+  @media screen and (min-width: ${tablet}) {
+    height: 76px;
+    width: 76px;
+
+    & svg {
+      width: 30px;
+      height: 30px;
+    }
   }
 `;

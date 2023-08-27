@@ -1,4 +1,15 @@
 import { styled } from "styled-components";
+import { tablet } from "src/constants/breakpoints";
+
+export const Container = styled.div`
+  @media screen and (min-width: ${tablet}) {
+    padding-left: 147px;
+
+    & ul {
+      justify-content: left;
+    }
+  }
+`;
 
 export const Logo = styled.img`
   margin-bottom: 80px;
