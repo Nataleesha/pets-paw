@@ -1,4 +1,5 @@
 import { styled } from "styled-components";
+import { tablet } from "src/constants/breakpoints";
 
 export const Container = styled.div`
   width: 100vw;
@@ -12,13 +13,25 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   text-align: right;
-  background-color: var(--background-color);
+  background-color: rgba(29, 29, 29, 0.6);
+
+  @media screen and (min-width: ${tablet}) {
+    height: calc(100vh - 40px);
+    padding: 20px;
+  }
 `;
 
 export const InnerContainer = styled.div`
   width: 335px;
   height: calc(100% - 40px);
   padding: 20px;
+  background-color: var(--background-color);
+
+  @media screen and (min-width: ${tablet}) {
+    width: 680px;
+    border-radius: 20px;
+    overflow: scroll;
+  }
 `;
 
 export const ButtonClose = styled.button`
@@ -78,6 +91,13 @@ export const Uploader = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  position: relative;
+
+  @media screen and (min-width: ${tablet}) {
+    height: 300px;
+    flex-direction: row;
+    gap: 6px;
+  }
 `;
 
 export const Span = styled.span`
@@ -88,6 +108,11 @@ export const ImagePlaceholder = styled.div`
   position: absolute;
   width: 295px;
   height: 150px;
+
+  @media screen and (min-width: ${tablet}) {
+    width: 630px;
+    height: 270px;
+  }
 `;
 
 export const Image = styled.img`
@@ -114,6 +139,12 @@ export const UploadButton = styled.button`
   &:hover {
     background-color: var(--primary-light);
     color: var(--primary);
+  }
+
+  @media screen and (min-width: ${tablet}) {
+    width: 172px;
+    text-align: center;
+    margin: 0 auto 20px;
   }
 `;
 
