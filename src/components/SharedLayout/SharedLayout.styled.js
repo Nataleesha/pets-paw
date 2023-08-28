@@ -43,6 +43,7 @@ export const ContentContainer = styled.div`
   }
   @media screen and (min-width: 1440px) {
     width: 55%;
+    padding: 0;
   }
 `;
 
