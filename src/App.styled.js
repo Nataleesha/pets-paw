@@ -9,10 +9,10 @@ export const Container = styled.div`
   position: relative;
 
   @media screen and (min-width: ${tablet}) {
-    width: ${tablet};
+    width: calc(${tablet} - 40px);
   }
 
-  /* @media screen and (min-width: ${desktop}) {
-    width: ${desktop};
-  } */
+  @media screen and (min-width: ${desktop}) {
+    width: calc(${desktop} - 40px);
+  }
 `;

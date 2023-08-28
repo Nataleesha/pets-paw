@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { tablet } from "src/constants/breakpoints";
+import { tablet, desktop } from "src/constants/breakpoints";
 
 export const Container = styled.div`
   @media screen and (min-width: ${tablet}) {
@@ -7,6 +7,38 @@ export const Container = styled.div`
 
     & ul {
       justify-content: left;
+    }
+  }
+`;
+
+export const Content = styled.div`
+  @media screen and (min-width: ${desktop}) {
+    display: none;
+  }
+`;
+
+export const Hero = styled.div`
+  display: none;
+  @media screen and (min-width: ${desktop}) {
+    display: block;
+    /* background: url("src/assets/hero.png") #fbe0dc 50% / cover no-repeat; */
+    height: 900px;
+    width: 775px;
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    background: 700px 700px;
+
+    &::before {
+      content: "";
+      position: absolute;
+      height: 90%;
+      width: 90%;
+      top: 20px;
+      right: 20px;
+      z-index: -1;
+      background-color: #fbe0dc;
+      border-radius: 20px;
     }
   }
 `;
