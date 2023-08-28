@@ -2,6 +2,10 @@ import { styled } from "styled-components";
 import { NavLink } from "react-router-dom";
 import { tablet } from "src/constants/breakpoints";
 
+import voteLogo from "src/assets/images/vote.png";
+import petLogo from "src/assets/images/pet.png";
+import searchLogo from "src/assets/images/search.png";
+
 export const Nav = styled.ul`
   display: flex;
   flex-direction: column;
@@ -75,7 +79,7 @@ export const Voting = styled.div`
     border-radius: 20px;
     border: 4px solid rgba(255, 255, 255, 0.6);
     background: #b4b7ff;
-    background-image: url("src/assets/images/vote.png");
+    background-image: url(${voteLogo});
     background-repeat: no-repeat;
     background-position: top 33px left 15px;
 
@@ -99,7 +103,7 @@ export const Breeds = styled.div`
     border-radius: 20px;
     border: 4px solid rgba(255, 255, 255, 0.6);
     background: #97eab9;
-    background-image: url("src/assets/images/pet.png");
+    background-image: url(${petLogo});
     background-repeat: no-repeat;
     background-position: top 13px left 9px;
 
@@ -123,7 +127,7 @@ export const Gallery = styled.div`
     border-radius: 20px;
     border: 4px solid rgba(255, 255, 255, 0.6);
     background: #ffd280;
-    background-image: url("src/assets/images/search.png");
+    background-image: url(${searchLogo});
     background-repeat: no-repeat;
     background-position: bottom 0 left 10px;
 

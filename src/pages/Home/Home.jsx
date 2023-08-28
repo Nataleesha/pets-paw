@@ -1,6 +1,7 @@
 import Navigation from "src/components/Navigation/Navigation";
 
 import logo from "src/assets/images/logo.png";
+import hero from "src/assets/images/hero.png";
 
 import {
   Container,
@@ -23,7 +24,7 @@ const Home = () => {
         <Navigation />
       </Content>
       <Hero>
-        <img src="src/assets/hero.png" alt="hero" />
+        <img src={hero} alt="hero" />
       </Hero>
     </Container>
   );
