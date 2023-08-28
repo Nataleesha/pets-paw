@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Navigation from "src/components/Navigation/Navigation";
 
 import logo from "src/assets/images/logo.png";
@@ -17,7 +18,9 @@ const Home = () => {
   return (
     <Container>
       <Content>
-        <Logo src={logo} alt="pets paw logo" />
+        <Link to="/">
+          <Logo src={logo} alt="pets paw logo" />
+        </Link>
         <Header>Hi! 👋</Header>
         <Greeting>Welcome to MacPaw Bootcamp 2023</Greeting>
         <SubHeader>Lets start using The Cat API</SubHeader>
