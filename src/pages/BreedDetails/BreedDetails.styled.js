@@ -1,5 +1,6 @@
 import { styled } from "styled-components";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { tablet } from "src/constants/breakpoints";
 import "swiper/css";
 import "swiper/css/pagination";
 import "src/index.css";
@@ -14,6 +15,10 @@ export const Container = styled.div`
 export const BreadcrumbsContainer = styled.div`
   display: flex;
   gap: 10px;
+
+  @media screen and (min-width: ${tablet}) {
+    justify-content: left;
+  }
 `;
 
 export const BreedId = styled.button`
@@ -27,6 +32,16 @@ export const BreedId = styled.button`
   font-weight: 500;
   line-height: 30px;
   letter-spacing: 2px;
+
+  @media screen and (min-width: ${tablet}) {
+    width: 90px;
+  }
+`;
+
+export const ImagesHolder = styled.div`
+  position: relative;
+  margin-top: 10px;
+  margin-bottom: 50px;
 `;
 
 export const SwiperContainer = styled(Swiper)`
@@ -41,6 +56,10 @@ export const SwiperContainer = styled(Swiper)`
   --swiper-pagination-bullet-width: 10px;
   --swiper-pagination-bullet-height: 10px;
   --swiper-pagination-bullet-horizontal-gap: 3px;
+
+  @media screen and (min-width: ${tablet}) {
+    height: 390px;
+  }
 `;
 
 export const SwiperItem = styled(SwiperSlide)`
@@ -76,6 +95,13 @@ export const Title = styled.h3`
   background-color: var(--white);
   padding: 0 20px;
   white-space: nowrap;
+
+  @media screen and (min-width: ${tablet}) {
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 500;
+    top: -26px;
+  }
 `;
 
 export const Subtitle = styled.p`
@@ -86,13 +112,29 @@ export const InfoHolder = styled.div`
   display: flex;
   flex-direction: column;
   text-align: left;
+
+  @media screen and (min-width: ${tablet}) {
+    flex-direction: row;
+    gap: 50px;
+    justify-content: center;
+  }
 `;
 
 export const Temper = styled.div`
   margin-bottom: 10px;
+
+  @media screen and (min-width: ${tablet}) {
+    width: 290px;
+  }
 `;
 
-export const Params = styled.div``;
+export const Params = styled.div`
+  @media screen and (min-width: ${tablet}) {
+    display: flex;
+    flex-direction: column;
+    width: 290px;
+  }
+`;
 
 export const Bold = styled.p`
   color: var(--text-dark);
@@ -101,4 +143,10 @@ export const Bold = styled.p`
 
 export const DescrHolder = styled.div`
   margin-bottom: 10px;
+
+  @media screen and (min-width: ${tablet}) {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
 `;

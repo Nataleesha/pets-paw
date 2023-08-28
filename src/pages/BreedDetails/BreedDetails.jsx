@@ -11,6 +11,7 @@ import {
   Container,
   BreadcrumbsContainer,
   BreedId,
+  ImagesHolder,
   SwiperContainer,
   SwiperItem,
   Image,
@@ -49,7 +50,7 @@ const BreedDetails = () => {
           <Loader />
         ) : (
           <>
-            <div
+            <ImagesHolder
               style={{
                 position: "relative",
                 marginTop: "10px",
@@ -82,7 +83,7 @@ const BreedDetails = () => {
                 )}
               </SwiperContainer>
               <div className="swiper-custom-pagination" />
-            </div>
+            </ImagesHolder>
             <Description>
               <Title>{info[0].breeds[0].name}</Title>
               <Subtitle>{info[0].breeds[0]["alt_names"]}</Subtitle>

@@ -12,7 +12,7 @@ export const Container = styled.div`
     width: ${tablet};
   }
 
-  @media screen and (min-width: ${desktop}) {
+  /* @media screen and (min-width: ${desktop}) {
     width: ${desktop};
-  }
+  } */
 `;

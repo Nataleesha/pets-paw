@@ -11,13 +11,14 @@ const Likes = () => {
   useEffect(() => {
     const storageItem = JSON.parse(localStorage.getItem("historyVote"));
     setLikes(storageItem);
-    console.log(storageItem);
   }, []);
 
   return (
     <>
       <Menu />
-      <Container></Container>
+      <Container>
+        <p>Likes</p>
+      </Container>
     </>
   );
 };

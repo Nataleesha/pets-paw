@@ -79,6 +79,11 @@ a {
   padding: 5px;
   z-index: 2;
   overflow: visible;
+  cursor: pointer;
+
+  @media screen and (min-width: 768px) {
+    left: 310px;
+  }
 }
 
 .swiper-pagination-horizontal.swiper-pagination-bullets
