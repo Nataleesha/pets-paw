@@ -41,7 +41,8 @@ export const ContentContainer = styled.div`
     flex-direction: column;
     margin: 0 auto;
   }
-  @media screen and (max-width: 767px) {
+  @media screen and (min-width: 1440px) {
+    width: 55%;
   }
 `;
 
