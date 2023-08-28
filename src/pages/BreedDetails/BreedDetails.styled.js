@@ -67,6 +67,8 @@ export const SwiperItem = styled(SwiperSlide)`
   height: 100%;
 `;
 
+// workaround for the bug
+// https://github.com/nolimits4web/swiper/issues/4413
 SwiperItem.displayName = "SwiperSlide";
 
 export const Image = styled.img`
