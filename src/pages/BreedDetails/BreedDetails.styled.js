@@ -67,6 +67,8 @@ export const SwiperItem = styled(SwiperSlide)`
   height: 100%;
 `;
 
+SwiperItem.displayName = "SwiperSlide";
+
 export const Image = styled.img`
   border-radius: 20px;
   object-fit: cover;
