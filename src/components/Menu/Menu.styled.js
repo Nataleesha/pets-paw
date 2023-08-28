@@ -97,7 +97,8 @@ export const Form = styled.form`
 `;
 
 export const SearchInput = styled.input`
-  width: 311px;
+  /* width: 311px; */
+  width: calc(100% - 22px);
   height: 56px;
   border-radius: 20px;
   border: 2px solid transparent;

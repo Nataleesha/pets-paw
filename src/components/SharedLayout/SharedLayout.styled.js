@@ -11,6 +11,16 @@ export const Container = styled.div`
   & ul {
     justify-content: left;
   }
+
+  @media screen and (max-width: 1439px) {
+    width: 768px;
+    padding: 0;
+    flex-direction: column;
+    margin: 0 auto;
+  }
+  @media screen and (max-width: 767px) {
+    width: 375px;
+  }
 `;
 
 export const MenuContainer = styled.div`
@@ -29,6 +39,16 @@ export const ContentContainer = styled.div`
   width: 768px;
   padding: 20px;
   display: inline-block;
+
+  @media screen and (max-width: 1439px) {
+    width: 768px;
+    padding: 0;
+    flex-direction: column;
+    margin: 0 auto;
+  }
+  @media screen and (max-width: 767px) {
+    width: 375px;
+  }
 `;
 
 export const Logo = styled.img`
