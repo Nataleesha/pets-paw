@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 
 export const Container = styled.div`
-  width: 1400px;
+  width: 100%;
   margin: 0;
   position: relative;
   display: flex;
@@ -13,13 +13,9 @@ export const Container = styled.div`
   }
 
   @media screen and (max-width: 1439px) {
-    width: 768px;
     padding: 0;
     flex-direction: column;
     margin: 0 auto;
-  }
-  @media screen and (max-width: 767px) {
-    width: 375px;
   }
 `;
 
@@ -36,18 +32,16 @@ export const MenuContainer = styled.div`
 `;
 
 export const ContentContainer = styled.div`
-  width: 768px;
+  width: 100%;
   padding: 20px;
   display: inline-block;
 
   @media screen and (max-width: 1439px) {
-    width: 768px;
     padding: 0;
     flex-direction: column;
     margin: 0 auto;
   }
   @media screen and (max-width: 767px) {
-    width: 375px;
   }
 `;
 
