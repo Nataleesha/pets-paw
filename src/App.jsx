@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { nanoid } from "nanoid";
+import { HelmetProvider } from "react-helmet-async";
 
 import SharedLayout from "./components/SharedLayout/SharedLayout";
 import Home from "./pages/Home/Home";
@@ -28,22 +29,24 @@ const App = () => {
   }, []);
 
   return (
-    <Container>
-      <Routes>
-        <Route path="/" element={<SharedLayout />}>
-          <Route index element={<Home />} />
-          <Route path="voting" element={<Voting userID={userID} />} />
-          <Route path="breeds" element={<Breeds />} />
-          <Route path="breeds/:breedId" element={<BreedDetails />} />
-          <Route path="gallery" element={<Gallery userID={userID} />} />
-          <Route path="likes" element={<Likes />} />
-          <Route path="dislikes" element={<Dislikes />} />
-          <Route path="favourites" element={<Favourites />} />
-          <Route path="search" element={<SearchByName />} />
-          <Route path="*" element={<Home />} />
-        </Route>
-      </Routes>
-    </Container>
+    <HelmetProvider>
+      <Container>
+        <Routes>
+          <Route path="/" element={<SharedLayout />}>
+            <Route index element={<Home />} />
+            <Route path="voting" element={<Voting userID={userID} />} />
+            <Route path="breeds" element={<Breeds />} />
+            <Route path="breeds/:breedId" element={<BreedDetails />} />
+            <Route path="gallery" element={<Gallery userID={userID} />} />
+            <Route path="likes" element={<Likes />} />
+            <Route path="dislikes" element={<Dislikes />} />
+            <Route path="favourites" element={<Favourites />} />
+            <Route path="search" element={<SearchByName />} />
+            <Route path="*" element={<Home />} />
+          </Route>
+        </Routes>
+      </Container>
+    </HelmetProvider>
   );
 };
 

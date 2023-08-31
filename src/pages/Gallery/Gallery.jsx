@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { nanoid } from "nanoid";
+import { Helmet } from "react-helmet-async";
 
 import { getData, voteOnImage, favoriteDelete } from "src/utils/api";
 import { getCurrentTime } from "src/utils/currentTime";
@@ -157,6 +158,9 @@ const Gallery = ({ userID }) => {
 
   return (
     <>
+      <Helmet>
+        <title>Gallery</title>
+      </Helmet>
       <Menu />
       <Container>
         <BreadcrumbsContainer>

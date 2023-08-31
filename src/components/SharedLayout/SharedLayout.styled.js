@@ -42,7 +42,7 @@ export const ContentContainer = styled.div`
     margin: 0 auto;
   }
   @media screen and (min-width: 1440px) {
-    width: 55%;
+    width: 768px;
     padding: 0;
   }
 `;

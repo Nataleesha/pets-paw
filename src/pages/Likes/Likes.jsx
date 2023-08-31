@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 
 import Menu from "src/components/Menu/Menu";
 import { getData } from "src/utils/api";
@@ -15,6 +16,9 @@ const Likes = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Likes</title>
+      </Helmet>
       <Menu />
       <Container>
         <p>Likes</p>

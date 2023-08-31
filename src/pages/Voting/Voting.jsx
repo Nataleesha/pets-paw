@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import { Helmet } from "react-helmet-async";
 
 import Menu from "src/components/Menu/Menu";
 import VoteCard from "src/components/VoteCard/VoteCard";
@@ -119,6 +120,9 @@ const Voting = ({ userID }) => {
 
   return (
     <>
+      <Helmet>
+        <title>Voting</title>
+      </Helmet>
       <Menu />
       <Container>
         <VoteCard

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Pagination } from "swiper/modules";
+import { Helmet } from "react-helmet-async";
 
 import Menu from "src/components/Menu/Menu";
 import Breadcrumbs from "src/components/Breadcrumbs/Breadcrumbs";
@@ -40,6 +41,9 @@ const BreedDetails = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Details</title>
+      </Helmet>
       <Menu />
       <Container>
         <BreadcrumbsContainer>

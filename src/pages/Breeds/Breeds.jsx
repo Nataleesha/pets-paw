@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 
 import Menu from "src/components/Menu/Menu";
 import BreedsFilter from "src/components/BreedsFilter/BreedsFilter";
@@ -29,6 +30,9 @@ const Breeds = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Breeds</title>
+      </Helmet>
       <Menu />
       <Container>
         <BreedsFilter breeds={breeds} />

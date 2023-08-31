@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useLocation } from "react-router-dom";
 import { nanoid } from "nanoid";
+import { Helmet } from "react-helmet-async";
 
 import { getData } from "src/utils/api";
 import { getGridGroups } from "src/utils/gridDivision";
@@ -56,7 +57,10 @@ const SearchByName = () => {
   }, [fetchBreeds, state]);
 
   return (
-    <div>
+    <>
+      <Helmet>
+        <title>Search</title>
+      </Helmet>
       <Menu />
       <Container>
         <Breadcrumbs text="Search" />
@@ -92,7 +96,7 @@ const SearchByName = () => {
           </div>
         )}
       </Container>
-    </div>
+    </>
   );
 };
 
