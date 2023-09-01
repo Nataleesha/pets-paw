@@ -10,6 +10,7 @@ const Loader = () => {
         justifyContent: "center",
         alignItems: "center",
         paddingTop: "40px",
+        paddingBottom: "40px",
       }}
     >
       <Oval

@@ -11,8 +11,8 @@ import Breadcrumbs from "src/components/Breadcrumbs/Breadcrumbs";
 import NoItemFound from "src/components/NoItemFound/NoItemFound";
 import Loader from "src/components/Loader/Loader";
 
+import { CardContainer } from "src/components/CardContainer.styled";
 import {
-  Container,
   NameResults,
   Name,
   Group,
@@ -62,7 +62,7 @@ const SearchByName = () => {
         <title>Search</title>
       </Helmet>
       <Menu />
-      <Container>
+      <CardContainer>
         <Breadcrumbs text="Search" />
         {state && (
           <NameResults>
@@ -95,7 +95,7 @@ const SearchByName = () => {
             )}
           </div>
         )}
-      </Container>
+      </CardContainer>
     </>
   );
 };

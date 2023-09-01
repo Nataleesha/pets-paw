@@ -13,7 +13,6 @@ export const Nav = styled.ul`
   @media screen and (min-width: ${tablet}) {
     flex-direction: row;
     gap: 16px;
-    justify-content: center;
   }
 `;
 

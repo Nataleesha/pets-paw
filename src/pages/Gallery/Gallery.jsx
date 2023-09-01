@@ -13,8 +13,8 @@ import Breadcrumbs from "src/components/Breadcrumbs/Breadcrumbs";
 import Loader from "src/components/Loader/Loader";
 import UploadModal from "src/components/UploadModal/UploadModal";
 
+import { CardContainer } from "src/components/CardContainer.styled";
 import {
-  Container,
   BreadcrumbsContainer,
   ButtonUpload,
   GalleryFilters,
@@ -132,20 +132,27 @@ const Gallery = ({ userID }) => {
     addFavToLocalStorage(newVote);
   };
 
-  const handleOrderSelect = (e) => {
-    setOrder(e.target.value);
-  };
-
-  const handleTypeSelect = (e) => {
-    setType(e.target.value);
-  };
-
-  const handleBreedSelect = (e) => {
-    setBreedSelected(e.target.value);
-  };
-
-  const handleLimitSelect = (e) => {
-    setLimitSelected(e.target.value);
+  const handleSelect = (e) => {
+    switch (e.target.name) {
+      case "order":
+        console.log(e.target.name);
+        setOrder(e.target.value);
+        break;
+      case "type":
+        console.log(e.target.name);
+        setType(e.target.value);
+        break;
+      case "breed":
+        console.log(e.target.name);
+        setBreedSelected(e.target.value);
+        break;
+      case "limit":
+        console.log(e.target.name);
+        setLimitSelected(e.target.value);
+        break;
+      default:
+        console.log("error");
+    }
   };
 
   const fetchRefresh = async () => {
@@ -162,7 +169,7 @@ const Gallery = ({ userID }) => {
         <title>Gallery</title>
       </Helmet>
       <Menu />
-      <Container>
+      <CardContainer>
         <BreadcrumbsContainer>
           <Breadcrumbs text="Gallery" />
           <ButtonUpload type="button" onClick={toggleModal}>
@@ -186,7 +193,7 @@ const Gallery = ({ userID }) => {
         <GalleryFilters>
           <SelectContainer>
             <InputLabel htmlFor="order">Order</InputLabel>
-            <InputSelect id="order" name="order" onChange={handleOrderSelect}>
+            <InputSelect id="order" name="order" onChange={handleSelect}>
               <option value="RANDOM">Random</option>
               <option value="ASC">Ascending</option>
               <option value="DESC">Descending</option>
@@ -196,7 +203,7 @@ const Gallery = ({ userID }) => {
               id="type"
               name="type"
               defaultValue="jpg,png"
-              onChange={handleTypeSelect}
+              onChange={handleSelect}
             >
               <option value="jpg,gif,png">All</option>
               <option value="jpg,png">Static</option>
@@ -205,7 +212,7 @@ const Gallery = ({ userID }) => {
           </SelectContainer>
           <SelectContainer>
             <InputLabel htmlFor="breed">Breed</InputLabel>
-            <InputSelect id="breed" name="breed" onChange={handleBreedSelect}>
+            <InputSelect id="breed" name="breed" onChange={handleSelect}>
               <option value="">None</option>
               {breeds &&
                 breeds.map((breed) => {
@@ -219,11 +226,7 @@ const Gallery = ({ userID }) => {
             <RefreshContainer>
               <div>
                 <InputLabel htmlFor="limit">Limit</InputLabel>
-                <InputSelect
-                  id="limit"
-                  name="limit"
-                  onChange={handleLimitSelect}
-                >
+                <InputSelect id="limit" name="limit" onChange={handleSelect}>
                   <option value="5">5 items per page</option>
                   <option value="10">10 items per page</option>
                   <option value="15">15 items per page</option>
@@ -312,7 +315,7 @@ const Gallery = ({ userID }) => {
             })
           )}
         </GalleryGrid>
-      </Container>
+      </CardContainer>
       {openModal ? <UploadModal toggleModal={toggleModal} /> : null}
     </>
   );

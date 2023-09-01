@@ -1,13 +1,6 @@
 import { styled } from "styled-components";
 import { tablet } from "src/constants/breakpoints";
 
-export const Container = styled.div`
-  background-color: var(--white);
-  border-radius: 20px;
-  padding: 20px;
-  min-height: 450px;
-`;
-
 export const NameResults = styled.p`
   margin-bottom: 10px;
 `;

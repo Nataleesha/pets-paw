@@ -21,7 +21,7 @@ export const Image = styled.img`
 
 export const ButtonList = styled.ul`
   position: absolute;
-  bottom: -34px;
+  transform: translateY(-50%);
   left: 55px;
   display: flex;
   border: 5px solid var(--white);
@@ -29,7 +29,7 @@ export const ButtonList = styled.ul`
   background-color: var(--white);
 
   @media screen and (min-width: ${tablet}) {
-    left: 246px;
+    left: 230px;
   }
 `;
 

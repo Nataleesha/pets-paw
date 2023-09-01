@@ -16,6 +16,10 @@ export const Container = styled.div`
     padding: 0;
     flex-direction: column;
     margin: 0 auto;
+
+    & ul {
+      justify-content: center;
+    }
   }
 `;
 
@@ -24,7 +28,7 @@ export const MenuContainer = styled.div`
   padding-left: 100px;
   position: fixed;
   top: 20px;
-  left: 20px;
+  right: 55%;
 
   @media screen and (max-width: 1439px) {
     display: none;

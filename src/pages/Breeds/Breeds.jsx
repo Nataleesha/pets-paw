@@ -6,7 +6,7 @@ import BreedsFilter from "src/components/BreedsFilter/BreedsFilter";
 
 import { getData } from "src/utils/api";
 
-import { Container } from "./Breeds.styled";
+import { CardContainer } from "src/components/CardContainer.styled";
 
 const Breeds = () => {
   const [breeds, setBreeds] = useState([]);
@@ -34,9 +34,9 @@ const Breeds = () => {
         <title>Breeds</title>
       </Helmet>
       <Menu />
-      <Container>
+      <CardContainer>
         <BreedsFilter breeds={breeds} />
-      </Container>
+      </CardContainer>
     </>
   );
 };

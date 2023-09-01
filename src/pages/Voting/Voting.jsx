@@ -10,7 +10,7 @@ import { getData, voteOnImage, favoriteDelete } from "src/utils/api";
 import { getCurrentTime } from "src/utils/currentTime";
 import { addFavToLocalStorage } from "src/utils/storage";
 
-import { Container } from "./Voting.styled";
+import { CardContainer } from "src/components/CardContainer.styled";
 
 const Voting = ({ userID }) => {
   const [image, setImage] = useState({});
@@ -124,7 +124,7 @@ const Voting = ({ userID }) => {
         <title>Voting</title>
       </Helmet>
       <Menu />
-      <Container>
+      <CardContainer>
         <VoteCard
           image={image}
           vote={vote}
@@ -133,7 +133,7 @@ const Voting = ({ userID }) => {
           removeFav={removeFavorite}
         />
         <VoteHistory history={voteHistory} />
-      </Container>
+      </CardContainer>
     </>
   );
 };

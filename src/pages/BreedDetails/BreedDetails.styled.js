@@ -5,13 +5,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "src/index.css";
 
-export const Container = styled.div`
-  padding: 20px;
-  background-color: var(--white);
-  border-radius: 20px;
-  min-height: 450px;
-`;
-
 export const BreadcrumbsContainer = styled.div`
   display: flex;
   gap: 10px;

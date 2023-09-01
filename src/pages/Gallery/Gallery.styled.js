@@ -1,12 +1,5 @@
 import { styled } from "styled-components";
-import { tablet } from "src/constants/breakpoints";
-
-export const Container = styled.div`
-  padding: 20px;
-  border-radius: 20px;
-  background-color: var(--white);
-  min-height: 450px;
-`;
+import { tablet, desktop } from "src/constants/breakpoints";
 
 export const BreadcrumbsContainer = styled.div`
   display: flex;
@@ -59,7 +52,15 @@ export const GalleryFilters = styled.div`
   }
 `;
 
-export const SelectContainer = styled.div``;
+export const SelectContainer = styled.div`
+  @media screen and (min-width: ${tablet}) {
+    width: 314px;
+  }
+
+  @media screen and (min-width: ${desktop}) {
+    width: 334px;
+  }
+`;
 
 export const InputLabel = styled.label`
   display: block;
@@ -73,6 +74,7 @@ export const InputLabel = styled.label`
 export const InputSelect = styled.select`
   display: block;
   width: 100%;
+  height: 40px;
   padding: 8px 10px;
   margin-bottom: 10px;
   border: 2px solid transparent;
@@ -86,10 +88,6 @@ export const InputSelect = styled.select`
   &:hover {
     border-color: var(--primary-light);
   }
-
-  @media screen and (min-width: ${tablet}) {
-    width: 333px;
-  }
 `;
 
 export const RefreshContainer = styled.div`
@@ -101,13 +99,18 @@ export const RefreshContainer = styled.div`
     gap: 20px;
 
     & select {
-      width: 274px;
+      width: 254px;
     }
 
     & button {
       width: 40px;
-      height: 40px;
       margin-top: 10px;
+    }
+  }
+
+  @media screen and (min-width: ${desktop}) {
+    & select {
+      width: 274px;
     }
   }
 `;
@@ -115,6 +118,7 @@ export const RefreshContainer = styled.div`
 export const RefreshButton = styled.button`
   width: 100%;
   padding: 8px;
+  height: 40px;
   background-color: var(--white);
   color: var(--primary);
   border: none;

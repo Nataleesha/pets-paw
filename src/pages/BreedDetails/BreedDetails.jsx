@@ -8,8 +8,8 @@ import Breadcrumbs from "src/components/Breadcrumbs/Breadcrumbs";
 import Loader from "src/components/Loader/Loader";
 import { getData } from "src/utils/api";
 
+import { CardContainer } from "src/components/CardContainer.styled";
 import {
-  Container,
   BreadcrumbsContainer,
   BreedId,
   ImagesHolder,
@@ -45,7 +45,7 @@ const BreedDetails = () => {
         <title>Details</title>
       </Helmet>
       <Menu />
-      <Container>
+      <CardContainer>
         <BreadcrumbsContainer>
           <Breadcrumbs text="Breeds" />
           <BreedId>{breedId}</BreedId>
@@ -114,7 +114,7 @@ const BreedDetails = () => {
             </Description>
           </>
         )}
-      </Container>
+      </CardContainer>
     </>
   );
 };

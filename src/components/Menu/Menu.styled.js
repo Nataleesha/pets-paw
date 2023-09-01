@@ -116,11 +116,11 @@ export const SearchInput = styled.input`
   }
 
   @media screen and (min-width: ${tablet}) {
-    width: 464px;
+    width: 422px;
   }
 
   @media screen and (min-width: ${desktop}) {
-    width: 533px;
+    width: 534px;
   }
 `;
 
