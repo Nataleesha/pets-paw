@@ -135,19 +135,15 @@ const Gallery = ({ userID }) => {
   const handleSelect = (e) => {
     switch (e.target.name) {
       case "order":
-        console.log(e.target.name);
         setOrder(e.target.value);
         break;
       case "type":
-        console.log(e.target.name);
         setType(e.target.value);
         break;
       case "breed":
-        console.log(e.target.name);
         setBreedSelected(e.target.value);
         break;
       case "limit":
-        console.log(e.target.name);
         setLimitSelected(e.target.value);
         break;
       default:
