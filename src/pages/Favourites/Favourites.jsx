@@ -4,6 +4,9 @@ import { Helmet } from "react-helmet-async";
 import { getData } from "src/utils/api";
 
 import Menu from "src/components/Menu/Menu";
+import Breadcrumbs from "src/components/Breadcrumbs/Breadcrumbs";
+
+import { CardContainer } from "src/components/CardContainer.styled";
 
 const Favourites = () => {
   return (
@@ -13,7 +16,10 @@ const Favourites = () => {
       </Helmet>
       <div>
         <Menu />
-        <p>Favorites</p>
+        <CardContainer>
+          <Breadcrumbs text="Favourites" />
+          <p>Favorites</p>
+        </CardContainer>
       </div>
     </>
   );
