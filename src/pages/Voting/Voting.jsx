@@ -12,20 +12,14 @@ import { addFavToLocalStorage } from "src/utils/storage";
 
 import { CardContainer } from "src/components/CardContainer.styled";
 
-const Voting = ({ userID }) => {
+const Voting = ({ userID, voteHistory, setVoteHistory }) => {
   const [image, setImage] = useState({});
-  const [voteHistory, setVoteHistory] = useState([]);
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
-    fetchImageToVote();
+    console.log("USEEFFECT", userID);
 
-    if (!localStorage.getItem("historyVote")) {
-      localStorage.setItem("historyVote", "[]");
-    } else {
-      const savedVoteHistory = localStorage.getItem("historyVote");
-      setVoteHistory(JSON.parse(savedVoteHistory));
-    }
+    fetchImageToVote();
 
     const getAllFavorites = async () => {
       const res = await getData(`favourites?sub_id=${userID}&order=DESC`);
@@ -60,10 +54,8 @@ const Voting = ({ userID }) => {
     setVoteHistory((voteHistory) => [newVote, ...voteHistory]);
 
     const storageItem = JSON.parse(localStorage.getItem("historyVote"));
-    storageItem.push(newVote);
+    storageItem.unshift(newVote);
     localStorage.setItem("historyVote", JSON.stringify(storageItem));
-
-    setImage({});
 
     fetchImageToVote();
   };
@@ -142,4 +134,6 @@ export default Voting;
 
 Voting.propTypes = {
   userID: PropTypes.string.isRequired,
+  voteHistory: PropTypes.array.isRequired,
+  setVoteHistory: PropTypes.func.isRequired,
 };

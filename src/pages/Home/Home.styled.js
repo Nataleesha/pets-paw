@@ -52,12 +52,7 @@ export const Header = styled.h1`
   font-size: 44px;
   font-weight: 500;
   line-height: 58px;
-  margin-bottom: 10px;
-`;
-
-export const Greeting = styled.p`
-  font-size: 20px;
-  margin-bottom: 60px;
+  margin-bottom: 70px;
 `;
 
 export const SubHeader = styled.h3`

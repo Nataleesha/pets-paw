@@ -11,7 +11,6 @@ import {
   Hero,
   Logo,
   Header,
-  Greeting,
   SubHeader,
 } from "./Home.styled";
 
@@ -27,7 +26,6 @@ const Home = () => {
             <Logo src={logo} alt="pets paw logo" />
           </Link>
           <Header>Hi! 👋</Header>
-          <Greeting>Welcome to MacPaw Bootcamp 2023</Greeting>
           <SubHeader>Lets start using The Cat API</SubHeader>
           <Navigation />
         </Content>

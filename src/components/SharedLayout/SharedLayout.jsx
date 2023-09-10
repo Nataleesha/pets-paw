@@ -9,7 +9,6 @@ import {
   Container,
   Logo,
   Header,
-  Greeting,
   SubHeader,
   ContentContainer,
   MenuContainer,
@@ -23,7 +22,6 @@ const SharedLayout = () => {
           <Logo src={logo} alt="pets paw logo" />
         </Link>
         <Header>Hi! 👋</Header>
-        <Greeting>Welcome to MacPaw Bootcamp 2023</Greeting>
         <SubHeader>Lets start using The Cat API</SubHeader>
         <Navigation />
       </MenuContainer>
