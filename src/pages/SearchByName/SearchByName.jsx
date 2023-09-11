@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
+import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { nanoid } from "nanoid";
 import { Helmet } from "react-helmet-async";
@@ -24,7 +25,7 @@ import {
 
 const SearchByName = () => {
   const [result, setResult] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const { state } = useLocation();
 
@@ -34,7 +35,6 @@ const SearchByName = () => {
   }, []);
 
   useEffect(() => {
-    setLoading(true);
     const fetchQuery = async () => {
       const res = await fetchBreeds();
 
@@ -56,6 +56,25 @@ const SearchByName = () => {
     fetchQuery();
   }, [fetchBreeds, state]);
 
+  const greedImages = getGridGroups(result).map((group) => {
+    return (
+      <Group key={nanoid()}>
+        {group.map((image) => {
+          return (
+            <ImageContainer key={image.id}>
+              <Link to={`/breeds/${image.breeds[0].id}`}>
+                <Image src={image.url} alt="cat" />
+                <ImageOverlay>
+                  <TextOverlay>{image.breeds[0].name}</TextOverlay>{" "}
+                </ImageOverlay>
+              </Link>
+            </ImageContainer>
+          );
+        })}
+      </Group>
+    );
+  });
+
   return (
     <>
       <Helmet>
@@ -72,28 +91,7 @@ const SearchByName = () => {
         {loading ? (
           <Loader />
         ) : (
-          <div>
-            {result.length ? (
-              getGridGroups(result).map((group) => {
-                return (
-                  <Group key={nanoid()}>
-                    {group.map((image) => {
-                      return (
-                        <ImageContainer key={image.id}>
-                          <Image src={image.url} alt="cat" />
-                          <ImageOverlay>
-                            <TextOverlay>{image.breeds[0].name}</TextOverlay>{" "}
-                          </ImageOverlay>
-                        </ImageContainer>
-                      );
-                    })}
-                  </Group>
-                );
-              })
-            ) : (
-              <NoItemFound />
-            )}
-          </div>
+          <div>{result.length ? greedImages : <NoItemFound />}</div>
         )}
       </CardContainer>
     </>
