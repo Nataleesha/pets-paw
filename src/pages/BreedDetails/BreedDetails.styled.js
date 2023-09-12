@@ -25,6 +25,7 @@ export const BreedId = styled.button`
   font-weight: 500;
   line-height: 30px;
   letter-spacing: 2px;
+  cursor: default;
 
   @media screen and (min-width: ${tablet}) {
     width: 90px;

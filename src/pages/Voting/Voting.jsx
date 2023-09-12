@@ -17,8 +17,6 @@ const Voting = ({ userID, voteHistory, setVoteHistory }) => {
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
-    console.log("USEEFFECT", userID);
-
     fetchImageToVote();
 
     const getAllFavorites = async () => {

@@ -15,11 +15,14 @@ import Favourites from "./pages/Favourites/Favourites";
 import SearchByName from "./pages/SearchByName/SearchByName";
 import Loader from "./components/Loader/Loader";
 
+import { getData } from "src/utils/api";
+
 import { Container } from "./App.styled";
 
 const App = () => {
   const [userID, setUserID] = useState("");
   const [voteHistory, setVoteHistory] = useState([]);
+  const [breeds, setBreeds] = useState([]);
 
   useEffect(() => {
     if (!localStorage.getItem("user_id")) {
@@ -35,7 +38,22 @@ const App = () => {
       const savedVoteHistory = localStorage.getItem("historyVote");
       setVoteHistory(JSON.parse(savedVoteHistory));
     }
+
+    getBreedsList();
   }, []);
+
+  const getBreedsList = async () => {
+    const res = await getData("breeds");
+
+    const breedsInfo = res.data.map((breed) => {
+      return {
+        id: breed.id,
+        name: breed.name,
+      };
+    });
+
+    setBreeds(breedsInfo);
+  };
 
   return (
     <HelmetProvider>
@@ -57,7 +75,7 @@ const App = () => {
                 )
               }
             />
-            <Route path="breeds" element={<Breeds />} />
+            <Route path="breeds" element={<Breeds breeds={breeds} />} />
             <Route path="breeds/:breedId" element={<BreedDetails />} />
             <Route path="gallery" element={<Gallery userID={userID} />} />
             <Route path="likes" element={<Likes />} />

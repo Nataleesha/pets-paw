@@ -25,7 +25,7 @@ import {
 
 const SearchByName = () => {
   const [result, setResult] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const { state } = useLocation();
 
@@ -36,6 +36,7 @@ const SearchByName = () => {
 
   useEffect(() => {
     const fetchQuery = async () => {
+      setLoading(true);
       const res = await fetchBreeds();
 
       if (state) {
