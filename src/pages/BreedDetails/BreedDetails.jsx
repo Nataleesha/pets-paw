@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Pagination } from "swiper/modules";
+import { Navigation, Pagination, Keyboard } from "swiper/modules";
 import { Helmet } from "react-helmet-async";
 
 import Menu from "src/components/Menu/Menu";
 import Breadcrumbs from "src/components/Breadcrumbs/Breadcrumbs";
 import Loader from "src/components/Loader/Loader";
+import ImageModal from "src/components/ImageModal/ImageModal";
 import { getData } from "src/utils/api";
 
 import { CardContainer } from "src/components/CardContainer.styled";
@@ -29,6 +30,8 @@ import {
 const BreedDetails = () => {
   const { breedId } = useParams();
   const [info, setInfo] = useState([]);
+  const [openImageModal, setOpenImageModal] = useState(false);
+  const [image, setImage] = useState(null);
 
   useEffect(() => {
     const getBreedInfo = async () => {
@@ -38,6 +41,22 @@ const BreedDetails = () => {
 
     getBreedInfo();
   }, [breedId]);
+
+  if (openImageModal) {
+    document.body.classList.add("no-overflow");
+  } else {
+    document.body.classList.remove("no-overflow");
+  }
+
+  const openModal = (e) => {
+    setOpenImageModal(true);
+    setImage(e.target.src);
+    console.log(e.target);
+  };
+
+  const closeModal = () => {
+    setOpenImageModal(false);
+  };
 
   return (
     <>
@@ -63,18 +82,27 @@ const BreedDetails = () => {
             >
               <SwiperContainer
                 className="swiper"
+                navigation={{
+                  nextEl: ".swiper-button-next",
+                  prevEl: ".swiper-button-prev",
+                }}
                 pagination={{
                   el: ".swiper-custom-pagination",
                   clickable: true,
                 }}
-                modules={[Pagination]}
+                keyboard
+                modules={[Navigation, Pagination, Keyboard]}
               >
                 {!info.length ? (
                   <Loader />
                 ) : (
                   info.map((obj) => {
                     return (
-                      <SwiperItem className="swiper-slide" key={obj.id}>
+                      <SwiperItem
+                        className="swiper-slide"
+                        key={obj.id}
+                        onClick={openModal}
+                      >
                         <Image
                           src={obj.url}
                           alt={obj.breeds[0].name}
@@ -85,6 +113,8 @@ const BreedDetails = () => {
                     );
                   })
                 )}
+                <div className="swiper-button-next"></div>
+                <div className="swiper-button-prev"></div>
               </SwiperContainer>
               <div className="swiper-custom-pagination" />
             </ImagesHolder>
@@ -115,6 +145,9 @@ const BreedDetails = () => {
           </>
         )}
       </CardContainer>
+      {openImageModal ? (
+        <ImageModal closeModal={closeModal} image={image} />
+      ) : null}
     </>
   );
 };

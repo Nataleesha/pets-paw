@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { tablet, desktop } from "src/constants/breakpoints";
 import "swiper/css";
 import "swiper/css/pagination";
+import "swiper/css/navigation";
 import "src/index.css";
 
 export const BreadcrumbsContainer = styled.div`
@@ -53,6 +54,18 @@ export const SwiperContainer = styled(Swiper)`
 
   @media screen and (min-width: ${tablet}) {
     height: 390px;
+  }
+
+  @media screen and (max-width: ${tablet}) {
+    .swiper-button-next,
+    .swiper-button-prev {
+      display: none;
+    }
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: var(--primary);
   }
 `;
 
