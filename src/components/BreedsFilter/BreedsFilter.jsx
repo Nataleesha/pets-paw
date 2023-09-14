@@ -33,26 +33,19 @@ const BreedsFilter = ({ breeds }) => {
   useEffect(() => {
     const getImages = async () => {
       const res = await getData(
-        `images/search?limit=${limit}&page=0&has_breeds=1`
+        `images/search?limit=${limit}&page=${page}&has_breeds=1&breed_ids=${selectedBreed}`
       );
+      if (res.data.length < limit) {
+        setNoMoreResults(true);
+      }
       setImages(res.data);
     };
 
     getImages();
-  }, [limit]);
+  }, [limit, page, selectedBreed]);
 
   const handleBreedSelect = (e) => {
     setSelectedBreed(e.target.value);
-    const breedImages = async () => {
-      setImages([]);
-      const res = e.target.value
-        ? await getData(
-            `images/search?limit=100&has_breeds=1&breed_ids=${e.target.value}`
-          )
-        : await getData("images/search?limit=100&has_breeds=1");
-      setImages(res.data);
-    };
-    breedImages();
   };
 
   const handleLimitSelect = (e) => {
@@ -79,21 +72,10 @@ const BreedsFilter = ({ breeds }) => {
   };
 
   const handleNextPage = async () => {
-    const res = await getData(
-      `images/search?limit=${limit}&page=${page}&has_breeds=1`
-    );
-    if (res.length < limit) {
-      setNoMoreResults(true);
-    }
-    setImages(res.data);
     setPage((page) => page + 1);
   };
 
   const handlePrevPage = async () => {
-    const res = await getData(
-      `images/search?limit=${limit}&page=${page}&has_breeds=1`
-    );
-    setImages(res.data);
     setPage((page) => page - 1);
     setNoMoreResults(false);
   };
