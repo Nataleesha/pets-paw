@@ -1,18 +1,10 @@
 import { Oval } from "react-loader-spinner";
 
+import { LoaderContainer } from "./Loader.styled";
+
 const Loader = () => {
   return (
-    <div
-      style={{
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        paddingTop: "40px",
-        paddingBottom: "40px",
-      }}
-    >
+    <LoaderContainer>
       <Oval
         weight={40}
         width={40}
@@ -25,7 +17,7 @@ const Loader = () => {
         strokeWidth={4}
         strokeWidthSecondary={4}
       />
-    </div>
+    </LoaderContainer>
   );
 };
 

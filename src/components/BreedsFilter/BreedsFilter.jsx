@@ -32,12 +32,14 @@ const BreedsFilter = ({ breeds }) => {
 
   useEffect(() => {
     const getImages = async () => {
-      const res = await getData("images/search?limit=5&page=0&has_breeds=1");
+      const res = await getData(
+        `images/search?limit=${limit}&page=0&has_breeds=1`
+      );
       setImages(res.data);
     };
 
     getImages();
-  }, []);
+  }, [limit]);
 
   const handleBreedSelect = (e) => {
     setSelectedBreed(e.target.value);
