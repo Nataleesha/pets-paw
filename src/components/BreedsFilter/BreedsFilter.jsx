@@ -31,6 +31,7 @@ const BreedsFilter = ({ breeds }) => {
   const [noMoreResults, setNoMoreResults] = useState(false);
 
   useEffect(() => {
+    setImages([]);
     const getImages = async () => {
       const res = await getData(
         `images/search?limit=${limit}&page=${page}&has_breeds=1&breed_ids=${selectedBreed}`
@@ -38,6 +39,10 @@ const BreedsFilter = ({ breeds }) => {
       if (res.data.length < limit) {
         setNoMoreResults(true);
       }
+      window.scrollBy({
+        top: 0,
+        behavior: "instant",
+      });
       setImages(res.data);
     };
 

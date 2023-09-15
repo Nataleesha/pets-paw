@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { tablet, desktop } from "src/constants/breakpoints";
+import { tablet } from "src/constants/breakpoints";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -93,7 +93,7 @@ export const Description = styled.div`
   font-weight: 400;
   line-height: normal;
 
-  @media screen and (min-width: ${desktop}) {
+  @media screen and (min-width: ${tablet}) {
     padding-top: 30px;
   }
 `;

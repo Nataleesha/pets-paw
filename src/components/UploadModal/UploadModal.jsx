@@ -56,11 +56,14 @@ const UploadModal = ({ toggleModal }) => {
       setStatus("error");
     }
     setPending(false);
+
+    const elem = document.getElementById("overflow");
+    elem.scrollTop = elem.scrollHeight;
   };
 
   return (
     <Container>
-      <InnerContainer>
+      <InnerContainer id="overflow">
         <ButtonClose type="button" onClick={toggleModal}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
