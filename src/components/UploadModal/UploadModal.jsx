@@ -58,7 +58,7 @@ const UploadModal = ({ toggleModal }) => {
     setPending(false);
 
     const elem = document.getElementById("overflow");
-    elem.scrollTop = elem.scrollHeight;
+    elem.scrollBy(0, elem.scrollHeight);
   };
 
   return (
@@ -92,7 +92,10 @@ const UploadModal = ({ toggleModal }) => {
           </Link>{" "}
           or face deletion.
         </Notice>
-        <Uploader {...getRootProps({ className: "dropzone" })}>
+        <Uploader
+          {...getRootProps({ className: "dropzone" })}
+          className={status === "error" ? "error" : ""}
+        >
           <Notice style={{ margin: "0" }}>
             <Span>Drag here</Span> your file or
           </Notice>

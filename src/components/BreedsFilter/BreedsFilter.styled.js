@@ -3,6 +3,7 @@ import { tablet } from "src/constants/breakpoints";
 
 export const Select = styled.select`
   width: 100%;
+  height: 40px;
   margin-bottom: 10px;
   padding: 8px 10px;
   border: 2px solid transparent;
@@ -173,43 +174,4 @@ export const TextOverlay = styled.p`
   font-size: 16px;
   line-height: 24px;
   padding: 5px 0;
-`;
-
-export const PaginationContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-`;
-
-export const Pagination = styled.button`
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
-  padding: 0;
-  width: 122px;
-  height: 40px;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 16px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  background-color: var(--primary-light);
-  color: var(--primary);
-  border-radius: 10px;
-  border-color: transparent;
-  transition: 0.5s ease;
-
-  &:hover {
-    transition: 0.5s ease;
-    color: var(--white);
-    background-color: var(--primary);
-  }
-
-  &[disabled] {
-    background-color: var(--background-color);
-    color: var(--text-light);
-    cursor: default;
-  }
 `;

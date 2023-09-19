@@ -16,6 +16,6 @@ export const Container = styled.div`
 
 export const Image = styled.img`
   display: block;
-  max-width: 95%;
-  max-height: 95%;
+  max-width: 100%;
+  max-height: 100%;
 `;

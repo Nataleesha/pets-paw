@@ -22,8 +22,9 @@ export const Container = styled.div`
 `;
 
 export const InnerContainer = styled.div`
-  width: 335px;
-  height: calc(100% - 40px);
+  /* width: 335px; */
+  width: calc(100vw - 40px);
+  height: calc(100vh - 40px);
   padding: 20px;
   background-color: var(--background-color);
 
@@ -84,7 +85,7 @@ export const Uploader = styled.div`
   background-position: center;
   background-size: 30%;
   border-radius: 20px;
-  border: 2px dashed var(--primary-light);
+  border: 2px dashed var(--primary);
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -92,6 +93,10 @@ export const Uploader = styled.div`
   align-items: center;
   cursor: pointer;
   position: relative;
+
+  &.error {
+    background-color: var(--primary-light);
+  }
 
   @media screen and (min-width: ${tablet}) {
     height: 300px;

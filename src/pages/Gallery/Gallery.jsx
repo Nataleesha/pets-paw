@@ -12,6 +12,7 @@ import Menu from "src/components/Menu/Menu";
 import Breadcrumbs from "src/components/Breadcrumbs/Breadcrumbs";
 import Loader from "src/components/Loader/Loader";
 import UploadModal from "src/components/UploadModal/UploadModal";
+import Pagination from "src/components/Pagination/Pagination";
 
 import { CardContainer } from "src/components/CardContainer.styled";
 import {
@@ -311,6 +312,7 @@ const Gallery = ({ userID }) => {
             })
           )}
         </GalleryGrid>
+        <Pagination />
       </CardContainer>
       {openModal ? <UploadModal toggleModal={toggleModal} /> : null}
     </>
