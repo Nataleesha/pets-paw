@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import PropTypes from "prop-types";
 import { nanoid } from "nanoid";
@@ -16,8 +16,11 @@ import { GridContainer, Group, ImageContainer, Image } from "./Likes.styled";
 const Likes = ({ voteHistory }) => {
   const [openImageModal, setOpenImageModal] = useState(false);
   const [image, setImage] = useState(null);
+  const [likes, setLikes] = useState(null);
 
-  const likes = voteHistory.filter((vote) => vote.action === "added to Likes");
+  useEffect(() => {
+    setLikes(voteHistory.filter((vote) => vote.action === "added to Likes"));
+  }, [voteHistory]);
 
   if (openImageModal) {
     document.body.classList.add("no-overflow");
@@ -43,7 +46,7 @@ const Likes = ({ voteHistory }) => {
       <CardContainer>
         <Breadcrumbs text="Likes" />
         <GridContainer>
-          {!voteHistory.length ? (
+          {!likes ? (
             <NoItemFound />
           ) : (
             getGridGroups(likes).map((group) => {
