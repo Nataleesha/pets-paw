@@ -99,7 +99,20 @@ const App = () => {
               path="dislikes"
               element={<Dislikes voteHistory={voteHistory} />}
             />
-            <Route path="favourites" element={<Favourites />} />
+            <Route
+              path="favourites"
+              element={
+                !userID ? (
+                  <Loader />
+                ) : (
+                  <Favourites
+                    userID={userID}
+                    voteHistory={voteHistory}
+                    setVoteHistory={setVoteHistory}
+                  />
+                )
+              }
+            />
             <Route path="search" element={<SearchByName />} />
             <Route path="*" element={<Home />} />
           </Route>
