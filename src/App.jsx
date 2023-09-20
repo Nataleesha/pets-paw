@@ -94,7 +94,7 @@ const App = () => {
                 )
               }
             />
-            <Route path="likes" element={<Likes />} />
+            <Route path="likes" element={<Likes voteHistory={voteHistory} />} />
             <Route path="dislikes" element={<Dislikes />} />
             <Route path="favourites" element={<Favourites />} />
             <Route path="search" element={<SearchByName />} />
