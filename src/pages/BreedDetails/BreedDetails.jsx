@@ -51,7 +51,6 @@ const BreedDetails = () => {
   const openModal = (e) => {
     setOpenImageModal(true);
     setImage(e.target.src);
-    console.log(e.target);
   };
 
   const closeModal = () => {

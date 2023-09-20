@@ -32,16 +32,16 @@ import {
   FavButton,
 } from "./Gallery.styled";
 
-const Gallery = ({ userID }) => {
+const Gallery = ({ userID, breeds, setVoteHistory }) => {
   const [data, setData] = useState([]);
-  const [breeds, setBreeds] = useState([]);
   const [favorites, setFavorites] = useState([]);
-  const [, setVoteHistory] = useState([]);
 
-  const [order, setOrder] = useState("RANDOM");
+  const [order, setOrder] = useState("ASC");
   const [type, setType] = useState("jpg,png");
   const [breedSelected, setBreedSelected] = useState("");
   const [limitSelected, setLimitSelected] = useState(5);
+  const [page, setPage] = useState(0);
+  const [noMoreResults, setNoMoreResults] = useState(false);
 
   const [openModal, setOpenModal] = useState(false);
 
@@ -51,26 +51,13 @@ const Gallery = ({ userID }) => {
       setData(res.data);
     };
 
-    const fetchBreedsList = async () => {
-      const res = await getData("breeds");
-      setBreeds(res.data);
-    };
-
     const fetchFavs = async () => {
       const res = await getData(`favourites?sub_id=${userID}`);
       setFavorites(res.data);
     };
 
     fetchData();
-    fetchBreedsList();
     fetchFavs();
-
-    if (!localStorage.getItem("historyVote")) {
-      localStorage.setItem("historyVote", "[]");
-    } else {
-      const savedVoteHistory = localStorage.getItem("historyVote");
-      setVoteHistory(JSON.parse(savedVoteHistory));
-    }
   }, [userID]);
 
   if (openModal) {
@@ -137,15 +124,19 @@ const Gallery = ({ userID }) => {
     switch (e.target.name) {
       case "order":
         setOrder(e.target.value);
+        setPage(0);
         break;
       case "type":
         setType(e.target.value);
+        setPage(0);
         break;
       case "breed":
         setBreedSelected(e.target.value);
+        setPage(0);
         break;
       case "limit":
         setLimitSelected(e.target.value);
+        setPage(0);
         break;
       default:
         console.log("error");
@@ -154,10 +145,28 @@ const Gallery = ({ userID }) => {
 
   const fetchRefresh = async () => {
     setData([]);
+    setNoMoreResults(false);
     const res = await getData(
-      `images/search?order=${order}&mime_types=${type}&breed_ids=${breedSelected}&limit=${limitSelected}`
+      `images/search?order=${order}&mime_types=${type}&has_breeds=1&breed_ids=${breedSelected}&limit=${limitSelected}&page=${page}`
     );
+    if (res.data.length < parseInt(limitSelected)) {
+      setNoMoreResults(true);
+    }
+    window.scrollBy({
+      top: 0,
+      behavior: "instant",
+    });
     setData(res.data);
+  };
+
+  const handleNextPage = async () => {
+    setPage((page) => page + 1);
+    fetchRefresh();
+  };
+
+  const handlePrevPage = async () => {
+    setPage((page) => page - 1);
+    fetchRefresh();
   };
 
   return (
@@ -191,9 +200,9 @@ const Gallery = ({ userID }) => {
           <SelectContainer>
             <InputLabel htmlFor="order">Order</InputLabel>
             <InputSelect id="order" name="order" onChange={handleSelect}>
-              <option value="RANDOM">Random</option>
               <option value="ASC">Ascending</option>
               <option value="DESC">Descending</option>
+              <option value="RANDOM">Random</option>
             </InputSelect>
             <InputLabel htmlFor="type">Type</InputLabel>
             <InputSelect
@@ -230,7 +239,12 @@ const Gallery = ({ userID }) => {
                   <option value="20">20 items per page</option>
                 </InputSelect>
               </div>
-              <RefreshButton type="button" onClick={fetchRefresh}>
+              <RefreshButton
+                type="button"
+                onClick={() => {
+                  setPage(0), fetchRefresh();
+                }}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
@@ -312,7 +326,12 @@ const Gallery = ({ userID }) => {
             })
           )}
         </GalleryGrid>
-        <Pagination />
+        <Pagination
+          handlePrevPage={handlePrevPage}
+          handleNextPage={handleNextPage}
+          page={page}
+          noMoreResults={noMoreResults}
+        />
       </CardContainer>
       {openModal ? <UploadModal toggleModal={toggleModal} /> : null}
     </>
@@ -323,4 +342,6 @@ export default Gallery;
 
 Gallery.propTypes = {
   userID: PropTypes.string.isRequired,
+  breeds: PropTypes.array.isRequired,
+  setVoteHistory: PropTypes.func.isRequired,
 };

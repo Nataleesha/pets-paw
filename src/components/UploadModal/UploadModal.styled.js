@@ -17,12 +17,11 @@ export const Container = styled.div`
 
   @media screen and (min-width: ${tablet}) {
     height: calc(100vh - 40px);
-    padding: 20px;
+    padding: 20px 0;
   }
 `;
 
 export const InnerContainer = styled.div`
-  /* width: 335px; */
   width: calc(100vw - 40px);
   height: calc(100vh - 40px);
   padding: 20px;

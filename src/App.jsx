@@ -75,9 +75,25 @@ const App = () => {
                 )
               }
             />
-            <Route path="breeds" element={<Breeds breeds={breeds} />} />
+            <Route
+              path="breeds"
+              element={!breeds.length ? <Loader /> : <Breeds breeds={breeds} />}
+            />
             <Route path="breeds/:breedId" element={<BreedDetails />} />
-            <Route path="gallery" element={<Gallery userID={userID} />} />
+            <Route
+              path="gallery"
+              element={
+                !userID || !breeds.length ? (
+                  <Loader />
+                ) : (
+                  <Gallery
+                    userID={userID}
+                    breeds={breeds}
+                    setVoteHistory={setVoteHistory}
+                  />
+                )
+              }
+            />
             <Route path="likes" element={<Likes />} />
             <Route path="dislikes" element={<Dislikes />} />
             <Route path="favourites" element={<Favourites />} />
