@@ -14,6 +14,7 @@ import Loader from "src/components/Loader/Loader";
 import UploadModal from "src/components/UploadModal/UploadModal";
 import Pagination from "src/components/Pagination/Pagination";
 import NoItemFound from "src/components/NoItemFound/NoItemFound";
+import ImageModal from "src/components/ImageModal/ImageModal";
 
 import { CardContainer } from "src/components/CardContainer.styled";
 import {
@@ -45,6 +46,9 @@ const Gallery = ({ userID, breeds, setVoteHistory }) => {
   const [noMoreResults, setNoMoreResults] = useState(false);
 
   const [openModal, setOpenModal] = useState(false);
+
+  const [openImageModal, setOpenImageModal] = useState(false);
+  const [currentImage, setCurrentImage] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -175,6 +179,15 @@ const Gallery = ({ userID, breeds, setVoteHistory }) => {
     fetchRefresh();
   };
 
+  const handleOpenImageModal = (url) => {
+    setCurrentImage(url);
+    setOpenImageModal(true);
+  };
+
+  const handleCloseImageModal = () => {
+    setOpenImageModal(false);
+  };
+
   return (
     <>
       <Helmet>
@@ -280,7 +293,10 @@ const Gallery = ({ userID, breeds, setVoteHistory }) => {
               <Group key={nanoid()}>
                 {group.map((item) => {
                   return (
-                    <ImageContainer key={item.id}>
+                    <ImageContainer
+                      key={item.id}
+                      onClick={() => handleOpenImageModal(item.url)}
+                    >
                       <Image src={item.url} alt="cat" />
                       <ImageOverlay>
                         {!favorites.some(
@@ -288,7 +304,10 @@ const Gallery = ({ userID, breeds, setVoteHistory }) => {
                         ) ? (
                           <FavButton
                             type="button"
-                            onClick={() => addFavorite(item)}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              addFavorite(item);
+                            }}
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -308,7 +327,10 @@ const Gallery = ({ userID, breeds, setVoteHistory }) => {
                         ) : (
                           <FavButton
                             type="button"
-                            onClick={() => removeFavorite(item)}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              removeFavorite(item);
+                            }}
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -340,6 +362,9 @@ const Gallery = ({ userID, breeds, setVoteHistory }) => {
         />
       </CardContainer>
       {openModal ? <UploadModal toggleModal={toggleModal} /> : null}
+      {openImageModal ? (
+        <ImageModal closeModal={handleCloseImageModal} image={currentImage} />
+      ) : null}
     </>
   );
 };

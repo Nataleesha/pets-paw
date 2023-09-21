@@ -253,4 +253,10 @@ export const FavButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: 0.6s ease all;
+
+  &:active {
+    transition: 0.6s ease;
+    transform: scale(1.5);
+  }
 `;

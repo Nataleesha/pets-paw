@@ -43,8 +43,10 @@ export const ButtonLike = styled.button`
   border-bottom-left-radius: 16px;
   background-color: var(--green);
   color: var(--white);
+  transition: 0.5s ease all;
 
   &:hover {
+    transition: 0.5s ease;
     background-color: var(--green-light);
     color: var(--green);
   }
@@ -68,8 +70,10 @@ export const ButtonFav = styled.button`
   border-right: 4px solid var(--white);
   background-color: var(--primary);
   color: var(--white);
+  transition: 0.5s ease all;
 
   &:hover {
+    transition: 0.5s ease;
     background-color: var(--primary-light);
     color: var(--primary);
   }
@@ -93,8 +97,10 @@ export const ButtonDislike = styled.button`
   border-bottom-right-radius: 16px;
   background-color: var(--orange);
   color: var(--white);
+  transition: 0.5s ease all;
 
   &:hover {
+    transition: 0.5s ease;
     background-color: var(--orange-light);
     color: var(--orange);
   }
