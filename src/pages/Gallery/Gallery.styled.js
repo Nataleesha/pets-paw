@@ -142,6 +142,10 @@ export const GalleryGrid = styled.div`
   @media screen and (min-width: ${tablet}) {
     margin-top: 20px;
   }
+
+  .no-results {
+    margin-bottom: 100px;
+  }
 `;
 
 export const Group = styled.div`

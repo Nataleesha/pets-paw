@@ -13,6 +13,7 @@ import Breadcrumbs from "src/components/Breadcrumbs/Breadcrumbs";
 import Loader from "src/components/Loader/Loader";
 import UploadModal from "src/components/UploadModal/UploadModal";
 import Pagination from "src/components/Pagination/Pagination";
+import NoItemFound from "src/components/NoItemFound/NoItemFound";
 
 import { CardContainer } from "src/components/CardContainer.styled";
 import {
@@ -36,7 +37,7 @@ const Gallery = ({ userID, breeds, setVoteHistory }) => {
   const [data, setData] = useState([]);
   const [favorites, setFavorites] = useState([]);
 
-  const [order, setOrder] = useState("ASC");
+  const [order, setOrder] = useState("");
   const [type, setType] = useState("jpg,png");
   const [breedSelected, setBreedSelected] = useState("");
   const [limitSelected, setLimitSelected] = useState(5);
@@ -47,7 +48,12 @@ const Gallery = ({ userID, breeds, setVoteHistory }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await getData("images/search?limit=5&mime_types=jpg,png");
+      const res = await getData(`images/search`, {
+        limit: 5,
+        order: "RAND",
+        mime_types: "jpg,png",
+        has_breeds: 1,
+      });
       setData(res.data);
     };
 
@@ -159,12 +165,12 @@ const Gallery = ({ userID, breeds, setVoteHistory }) => {
     setData(res.data);
   };
 
-  const handleNextPage = async () => {
+  const handleNextPage = () => {
     setPage((page) => page + 1);
     fetchRefresh();
   };
 
-  const handlePrevPage = async () => {
+  const handlePrevPage = () => {
     setPage((page) => page - 1);
     fetchRefresh();
   };
@@ -199,7 +205,12 @@ const Gallery = ({ userID, breeds, setVoteHistory }) => {
         <GalleryFilters>
           <SelectContainer>
             <InputLabel htmlFor="order">Order</InputLabel>
-            <InputSelect id="order" name="order" onChange={handleSelect}>
+            <InputSelect
+              id="order"
+              name="order"
+              defaultValue="RANDOM"
+              onChange={handleSelect}
+            >
               <option value="ASC">Ascending</option>
               <option value="DESC">Descending</option>
               <option value="RANDOM">Random</option>
@@ -219,7 +230,7 @@ const Gallery = ({ userID, breeds, setVoteHistory }) => {
           <SelectContainer>
             <InputLabel htmlFor="breed">Breed</InputLabel>
             <InputSelect id="breed" name="breed" onChange={handleSelect}>
-              <option value="">None</option>
+              <option value="">All</option>
               {breeds &&
                 breeds.map((breed) => {
                   return (
@@ -239,12 +250,7 @@ const Gallery = ({ userID, breeds, setVoteHistory }) => {
                   <option value="20">20 items per page</option>
                 </InputSelect>
               </div>
-              <RefreshButton
-                type="button"
-                onClick={() => {
-                  setPage(0), fetchRefresh();
-                }}
-              >
+              <RefreshButton type="button" onClick={fetchRefresh}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
@@ -265,66 +271,66 @@ const Gallery = ({ userID, breeds, setVoteHistory }) => {
         </GalleryFilters>
 
         <GalleryGrid>
-          {!data.length ? (
-            <Loader />
-          ) : (
-            getGridGroups(data).map((group) => {
-              return (
-                <Group key={nanoid()}>
-                  {group.map((item) => {
-                    return (
-                      <ImageContainer key={item.id}>
-                        <Image src={item.url} alt="cat" />
-                        <ImageOverlay>
-                          {!favorites.some(
-                            (favorite) => favorite.image_id === item.id
-                          ) ? (
-                            <FavButton
-                              type="button"
-                              onClick={() => addFavorite(item)}
-                            >
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="20"
-                                height="20"
-                                viewBox="0 0 20 20"
-                                fill="none"
-                              >
-                                <path
-                                  fillRule="evenodd"
-                                  clipRule="evenodd"
-                                  d="M5.38071 2.33333C3.14541 2.33333 1.33333 4.14541 1.33333 6.38071C1.33333 7.45414 1.75975 8.48361 2.51878 9.24264L10 16.7239L17.4812 9.24264C18.2402 8.48361 18.6667 7.45414 18.6667 6.38071C18.6667 4.14541 16.8546 2.33333 14.6193 2.33333C13.5459 2.33333 12.5164 2.75975 11.7574 3.51878L10.4714 4.80474C10.2111 5.06509 9.78895 5.06509 9.5286 4.80474L8.24264 3.51878C7.48361 2.75975 6.45414 2.33333 5.38071 2.33333ZM0 6.38071C0 3.40903 2.40903 1 5.38071 1C6.80777 1 8.17637 1.5669 9.18545 2.57597L10 3.39052L10.8146 2.57597C11.8236 1.56689 13.1922 1 14.6193 1C17.591 1 20 3.40903 20 6.38071C20 7.80777 19.4331 9.17637 18.424 10.1854L10.4714 18.1381C10.2111 18.3984 9.78895 18.3984 9.5286 18.1381L1.57597 10.1854C0.566893 9.17637 0 7.80777 0 6.38071Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </FavButton>
-                          ) : (
-                            <FavButton
-                              type="button"
-                              onClick={() => removeFavorite(item)}
-                            >
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="20"
-                                height="20"
-                                viewBox="0 0 20 20"
-                                fill="none"
-                              >
-                                <path
-                                  d="M5.38071 1C2.40903 1 0 3.40903 0 6.38071C0 7.80777 0.566893 9.17637 1.57597 10.1854L9.5286 18.1381C9.78895 18.3984 10.2111 18.3984 10.4714 18.1381L18.424 10.1854C19.4331 9.17637 20 7.80777 20 6.38071C20 3.40903 17.591 1 14.6193 1C13.1922 1 11.8236 1.56689 10.8146 2.57597L10 3.39052L9.18545 2.57597C8.17637 1.5669 6.80777 1 5.38071 1Z"
-                                  fill="currentColor"
-                                />
-                              </svg>
-                            </FavButton>
-                          )}
-                        </ImageOverlay>
-                      </ImageContainer>
-                    );
-                  })}
-                </Group>
-              );
-            })
+          {!data.length && noMoreResults && (
+            <NoItemFound style={{ marginBottom: "100px" }} />
           )}
+          {!data.length && !noMoreResults && <Loader />}
+          {getGridGroups(data).map((group) => {
+            return (
+              <Group key={nanoid()}>
+                {group.map((item) => {
+                  return (
+                    <ImageContainer key={item.id}>
+                      <Image src={item.url} alt="cat" />
+                      <ImageOverlay>
+                        {!favorites.some(
+                          (favorite) => favorite.image_id === item.id
+                        ) ? (
+                          <FavButton
+                            type="button"
+                            onClick={() => addFavorite(item)}
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="20"
+                              height="20"
+                              viewBox="0 0 20 20"
+                              fill="none"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                clipRule="evenodd"
+                                d="M5.38071 2.33333C3.14541 2.33333 1.33333 4.14541 1.33333 6.38071C1.33333 7.45414 1.75975 8.48361 2.51878 9.24264L10 16.7239L17.4812 9.24264C18.2402 8.48361 18.6667 7.45414 18.6667 6.38071C18.6667 4.14541 16.8546 2.33333 14.6193 2.33333C13.5459 2.33333 12.5164 2.75975 11.7574 3.51878L10.4714 4.80474C10.2111 5.06509 9.78895 5.06509 9.5286 4.80474L8.24264 3.51878C7.48361 2.75975 6.45414 2.33333 5.38071 2.33333ZM0 6.38071C0 3.40903 2.40903 1 5.38071 1C6.80777 1 8.17637 1.5669 9.18545 2.57597L10 3.39052L10.8146 2.57597C11.8236 1.56689 13.1922 1 14.6193 1C17.591 1 20 3.40903 20 6.38071C20 7.80777 19.4331 9.17637 18.424 10.1854L10.4714 18.1381C10.2111 18.3984 9.78895 18.3984 9.5286 18.1381L1.57597 10.1854C0.566893 9.17637 0 7.80777 0 6.38071Z"
+                                fill="currentColor"
+                              />
+                            </svg>
+                          </FavButton>
+                        ) : (
+                          <FavButton
+                            type="button"
+                            onClick={() => removeFavorite(item)}
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="20"
+                              height="20"
+                              viewBox="0 0 20 20"
+                              fill="none"
+                            >
+                              <path
+                                d="M5.38071 1C2.40903 1 0 3.40903 0 6.38071C0 7.80777 0.566893 9.17637 1.57597 10.1854L9.5286 18.1381C9.78895 18.3984 10.2111 18.3984 10.4714 18.1381L18.424 10.1854C19.4331 9.17637 20 7.80777 20 6.38071C20 3.40903 17.591 1 14.6193 1C13.1922 1 11.8236 1.56689 10.8146 2.57597L10 3.39052L9.18545 2.57597C8.17637 1.5669 6.80777 1 5.38071 1Z"
+                                fill="currentColor"
+                              />
+                            </svg>
+                          </FavButton>
+                        )}
+                      </ImageOverlay>
+                    </ImageContainer>
+                  );
+                })}
+              </Group>
+            );
+          })}
         </GalleryGrid>
         <Pagination
           handlePrevPage={handlePrevPage}

@@ -8,4 +8,5 @@ export const Message = styled.p`
   font-weight: 400;
   line-height: 24px;
   padding: 15px 20px;
+  margin-bottom: 20px;
 `;
