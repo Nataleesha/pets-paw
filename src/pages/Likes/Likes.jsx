@@ -7,20 +7,39 @@ import Menu from "src/components/Menu/Menu";
 import Breadcrumbs from "src/components/Breadcrumbs/Breadcrumbs";
 import NoItemFound from "src/components/NoItemFound/NoItemFound";
 import ImageModal from "src/components/ImageModal/ImageModal";
+import Pagination from "src/components/Pagination/Pagination";
 
 import { getGridGroups } from "src/utils/gridDivision";
 
 import { CardContainer } from "src/components/CardContainer.styled";
-import { GridContainer, Group, ImageContainer, Image } from "./Likes.styled";
+import {
+  FilterContainer,
+  Select,
+  GridContainer,
+  Group,
+  ImageContainer,
+  Image,
+} from "./Likes.styled";
 
 const Likes = ({ voteHistory }) => {
   const [openImageModal, setOpenImageModal] = useState(false);
   const [image, setImage] = useState(null);
-  const [likes, setLikes] = useState(null);
+  const [likes, setLikes] = useState([]);
+  const [page, setPage] = useState(0);
+  const [limitPerPage, setLimitPerPage] = useState(5);
+  const [noMoreResults, setNoMoreResults] = useState(false);
 
   useEffect(() => {
     setLikes(voteHistory.filter((vote) => vote.action === "added to Likes"));
   }, [voteHistory]);
+
+  useEffect(() => {
+    if (likes.length <= limitPerPage * (page + 1)) {
+      setNoMoreResults(true);
+    } else {
+      setNoMoreResults(false);
+    }
+  }, [likes, limitPerPage, page]);
 
   if (openImageModal) {
     document.body.classList.add("no-overflow");
@@ -37,6 +56,19 @@ const Likes = ({ voteHistory }) => {
     setOpenImageModal(false);
   };
 
+  const handleNextPage = () => {
+    setPage((page) => page + 1);
+  };
+
+  const handlePrevPage = () => {
+    setPage((page) => page - 1);
+  };
+
+  const handleLimitSelect = (e) => {
+    setLimitPerPage(e.target.value);
+    setPage(0);
+  };
+
   return (
     <>
       <Helmet>
@@ -44,12 +76,26 @@ const Likes = ({ voteHistory }) => {
       </Helmet>
       <Menu />
       <CardContainer>
-        <Breadcrumbs text="Likes" />
+        <FilterContainer>
+          <Breadcrumbs text="Likes" />
+          <Select
+            name="limit"
+            value={limitPerPage}
+            onChange={handleLimitSelect}
+          >
+            <option value="5">Limit: 5</option>
+            <option value="10">Limit: 10</option>
+            <option value="15">Limit: 15</option>
+            <option value="20">Limit: 20</option>
+          </Select>
+        </FilterContainer>
         <GridContainer>
           {!likes ? (
             <NoItemFound />
           ) : (
-            getGridGroups(likes).map((group) => {
+            getGridGroups(
+              likes.slice(limitPerPage * page, limitPerPage * (page + 1))
+            ).map((group) => {
               return (
                 <Group key={nanoid()}>
                   {group.map((image) => {
@@ -64,6 +110,12 @@ const Likes = ({ voteHistory }) => {
             })
           )}
         </GridContainer>
+        <Pagination
+          handlePrevPage={handlePrevPage}
+          handleNextPage={handleNextPage}
+          page={page}
+          noMoreResults={noMoreResults}
+        />
       </CardContainer>
       {openImageModal ? (
         <ImageModal closeModal={closeModal} image={image} />

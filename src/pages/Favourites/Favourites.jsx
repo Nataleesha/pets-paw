@@ -37,22 +37,18 @@ const Favourites = ({ userID, voteHistory, setVoteHistory }) => {
     setLoading(true);
     const getFavourites = async () => {
       const res = await getData(
-        `favourites?limit=20&sub_id=${userID}&order=DESC`
+        `favourites?limit=${limitPerPage}&page=${page}&sub_id=${userID}&order=DESC`
       );
       setFavourites(res.data);
       setLoading(false);
+
+      if (res.data.length < limitPerPage) {
+        setNoMoreResults(true);
+      }
     };
 
     getFavourites();
-  }, [userID]);
-
-  useEffect(() => {
-    if (favourites.length <= limitPerPage * (page + 1)) {
-      setNoMoreResults(true);
-    } else {
-      setNoMoreResults(false);
-    }
-  }, [favourites, limitPerPage, page]);
+  }, [limitPerPage, page, userID]);
 
   if (openImageModal) {
     document.body.classList.add("no-overflow");
@@ -109,9 +105,7 @@ const Favourites = ({ userID, voteHistory, setVoteHistory }) => {
             {!loading && !favourites.length && <NoItemFound />}
             {!loading &&
               favourites.length &&
-              getGridGroups(
-                favourites.slice(limitPerPage * page, limitPerPage * (page + 1))
-              ).map((group) => {
+              getGridGroups(favourites).map((group) => {
                 return (
                   <Group key={nanoid()}>
                     {group.map((image) => {

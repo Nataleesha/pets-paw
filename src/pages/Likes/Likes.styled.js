@@ -1,6 +1,38 @@
 import { styled } from "styled-components";
 import { tablet } from "src/constants/breakpoints";
 
+export const FilterContainer = styled.div`
+  @media screen and (min-width: ${tablet}) {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+`;
+
+export const Select = styled.select`
+  width: 100%;
+  height: 40px;
+  margin-bottom: 10px;
+  padding: 8px 10px;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  background-color: var(--background-color);
+  color: var(--text-light);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  outline: none;
+  cursor: pointer;
+
+  &:hover {
+    border-color: var(--primary-light);
+  }
+
+  @media screen and (min-width: ${tablet}) {
+    width: 200px;
+  }
+`;
+
 export const GridContainer = styled.div`
   @media screen and (min-width: ${tablet}) {
     margin-top: 10px;
