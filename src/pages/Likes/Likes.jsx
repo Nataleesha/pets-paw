@@ -90,7 +90,7 @@ const Likes = ({ voteHistory }) => {
           </Select>
         </FilterContainer>
         <GridContainer>
-          {!likes ? (
+          {!likes.length ? (
             <NoItemFound />
           ) : (
             getGridGroups(
