@@ -24,7 +24,7 @@ import {
   Image,
 } from "./Favourites.styled";
 
-const Favourites = ({ userID, voteHistory, setVoteHistory }) => {
+const Favourites = ({ userID }) => {
   const [favourites, setFavourites] = useState([]);
   const [openImageModal, setOpenImageModal] = useState(false);
   const [imageModal, setImageModal] = useState(null);
@@ -138,6 +138,4 @@ export default Favourites;
 
 Favourites.propTypes = {
   userID: PropTypes.string.isRequired,
-  voteHistory: PropTypes.array.isRequired,
-  setVoteHistory: PropTypes.func.isRequired,
 };

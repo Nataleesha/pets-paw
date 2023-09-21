@@ -101,17 +101,7 @@ const App = () => {
             />
             <Route
               path="favourites"
-              element={
-                !userID ? (
-                  <Loader />
-                ) : (
-                  <Favourites
-                    userID={userID}
-                    voteHistory={voteHistory}
-                    setVoteHistory={setVoteHistory}
-                  />
-                )
-              }
+              element={!userID ? <Loader /> : <Favourites userID={userID} />}
             />
             <Route path="search" element={<SearchByName />} />
             <Route path="*" element={<Home />} />
