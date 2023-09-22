@@ -38,7 +38,7 @@ const Gallery = ({ userID, breeds, setVoteHistory }) => {
   const [data, setData] = useState([]);
   const [favorites, setFavorites] = useState([]);
 
-  const [order, setOrder] = useState("");
+  const [order, setOrder] = useState("ASC");
   const [type, setType] = useState("jpg,png");
   const [breedSelected, setBreedSelected] = useState("");
   const [limitSelected, setLimitSelected] = useState(5);
@@ -54,7 +54,7 @@ const Gallery = ({ userID, breeds, setVoteHistory }) => {
     const fetchData = async () => {
       const res = await getData(`images/search`, {
         limit: 5,
-        order: "RAND",
+        order: "ASC",
         mime_types: "jpg,png",
         has_breeds: 1,
       });
@@ -157,7 +157,7 @@ const Gallery = ({ userID, breeds, setVoteHistory }) => {
     setData([]);
     setNoMoreResults(false);
     const res = await getData(
-      `images/search?order=${order}&mime_types=${type}&has_breeds=1&breed_ids=${breedSelected}&limit=${limitSelected}&page=${page}`
+      `images/search?order=${order}&mime_types=${type}&breed_ids=${breedSelected}&limit=${limitSelected}&page=${page}`
     );
     if (res.data.length < parseInt(limitSelected)) {
       setNoMoreResults(true);
@@ -218,12 +218,7 @@ const Gallery = ({ userID, breeds, setVoteHistory }) => {
         <GalleryFilters>
           <SelectContainer>
             <InputLabel htmlFor="order">Order</InputLabel>
-            <InputSelect
-              id="order"
-              name="order"
-              defaultValue="RANDOM"
-              onChange={handleSelect}
-            >
+            <InputSelect id="order" name="order" onChange={handleSelect}>
               <option value="ASC">Ascending</option>
               <option value="DESC">Descending</option>
               <option value="RANDOM">Random</option>
