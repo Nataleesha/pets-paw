@@ -17,11 +17,20 @@ export const Content = styled.div`
   }
 `;
 
+export const Navbar = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding-right: 0;
+
+  @media screen and (min-width: ${tablet}) {
+    padding-right: 134px;
+  }
+`;
+
 export const Hero = styled.div`
   display: none;
   @media screen and (min-width: ${desktop}) {
     display: block;
-    /* background: url("src/assets/hero.png") #fbe0dc 50% / cover no-repeat; */
     height: 900px;
     width: 775px;
     position: absolute;
@@ -37,14 +46,10 @@ export const Hero = styled.div`
       top: 20px;
       right: 20px;
       z-index: -1;
-      background-color: #fbe0dc;
+      background-color: var(--hero);
       border-radius: 20px;
     }
   }
-`;
-
-export const Logo = styled.img`
-  margin-bottom: 80px;
 `;
 
 export const Header = styled.h1`
@@ -56,7 +61,7 @@ export const Header = styled.h1`
 `;
 
 export const SubHeader = styled.h3`
-  color: #1d1d1d;
+  color: var(--text-dark);
   font-size: 20px;
   font-weight: 500;
   margin-bottom: 20px;

@@ -14,11 +14,13 @@ export const BackLink = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--primary-light);
+  background-color: var(--switch);
   color: var(--primary);
   margin-right: 10px;
+  transition: 0.5s;
 
   &:hover {
+    transition: 0.5s;
     background-color: var(--primary);
     color: var(--white);
   }

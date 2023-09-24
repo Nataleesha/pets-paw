@@ -11,7 +11,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--text-dark);
+  background-color: var(--modal-bg);
 `;
 
 export const Image = styled.img`

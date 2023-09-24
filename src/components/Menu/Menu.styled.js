@@ -24,7 +24,7 @@ export const MenuButton = styled.button`
   left: 0;
   border: transparent;
   border-radius: 20px;
-  background-color: var(--white);
+  background-color: var(--light-background);
   color: var(--primary);
 
   &:hover {
@@ -61,17 +61,17 @@ export const ActionLink = styled(NavLink)`
   justify-content: center;
   align-items: center;
   border-radius: 20px;
-  background-color: var(--white);
+  background-color: var(--light-background);
   color: var(--primary);
-  transition: 0.2s all;
+  transition: 0.5s;
 
   &:hover {
-    transition: 0.2s all;
+    transition: 0.5s;
     background-color: var(--primary-light);
   }
 
   &:active {
-    transition: 0.2s all;
+    transition: 0.5s;
     background-color: var(--primary);
     color: var(--white);
   }
@@ -81,7 +81,7 @@ export const ActionLink = styled(NavLink)`
     color: var(--white);
 
     &:hover {
-      transition: 0.2s all;
+      transition: 0.5s;
       background-color: var(--primary-light);
       color: var(--primary);
     }
@@ -106,9 +106,11 @@ export const SearchInput = styled.input`
   line-height: 30px;
   padding: 0 0 0 20px;
   outline: none;
+  background-color: var(--light-background);
 
   &:hover {
-    border-color: var(--primary-light);
+    transition: 0.5s;
+    border-color: var(--switch);
   }
 
   &:focus {
@@ -132,6 +134,6 @@ export const SearchButton = styled.button`
   height: 40px;
   border: transparent;
   border-radius: 10px;
-  background-color: var(--primary-light);
+  background-color: var(--switch);
   color: var(--primary);
 `;

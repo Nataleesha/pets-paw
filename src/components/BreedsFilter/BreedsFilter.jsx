@@ -57,22 +57,34 @@ const BreedsFilter = ({ breeds }) => {
     setPage(0);
   };
 
-  const abcSort = () => {
+  const abcSort = (e) => {
     const sorted = [...images].sort((a, b) => {
       const breedA = a.breeds[0].name.toLowerCase();
       const breedB = b.breeds[0].name.toLowerCase();
       return breedA < breedB ? -1 : breedA > breedB ? 1 : 0;
     });
     setImages(sorted);
+
+    document
+      .querySelectorAll(".btn-sort")
+      .forEach((btn) => btn.classList.remove("active"));
+
+    e.target.classList.add("active");
   };
 
-  const abcSortReversed = () => {
+  const abcSortReversed = (e) => {
     const sorted = [...images].sort((a, b) => {
       const breedA = a.breeds[0].name.toLowerCase();
       const breedB = b.breeds[0].name.toLowerCase();
       return breedA > breedB ? -1 : breedA < breedB ? 1 : 0;
     });
     setImages(sorted);
+
+    document
+      .querySelectorAll(".btn-sort")
+      .forEach((btn) => btn.classList.remove("active"));
+
+    e.target.classList.add("active");
   };
 
   const handleNextPage = async () => {
@@ -111,7 +123,7 @@ const BreedsFilter = ({ breeds }) => {
             <option value="15">Limit: 15</option>
             <option value="20">Limit: 20</option>
           </Select>
-          <AbcSort type="button" onClick={abcSort}>
+          <AbcSort type="button" className="btn-sort" onClick={abcSort}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="19"
@@ -127,7 +139,7 @@ const BreedsFilter = ({ breeds }) => {
               />
             </svg>
           </AbcSort>
-          <AbcSort type="button" onClick={abcSortReversed}>
+          <AbcSort type="button" className="btn-sort" onClick={abcSortReversed}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="19"

@@ -24,6 +24,7 @@ export const ButtonUpload = styled.button`
   text-transform: uppercase;
   background-color: var(--primary-light);
   color: var(--primary);
+  transition: 0.5s ease;
 
   font-size: 12px;
   font-weight: 500;
@@ -31,6 +32,7 @@ export const ButtonUpload = styled.button`
   letter-spacing: 2px;
 
   &:hover {
+    transition: 0.5s ease;
     background-color: var(--primary);
     color: var(--white);
   }
@@ -41,7 +43,7 @@ export const ButtonUpload = styled.button`
 `;
 
 export const GalleryFilters = styled.div`
-  background-color: var(--background-color);
+  background-color: var(--lighter-background);
   padding: 20px;
   margin-bottom: 10px;
   border-radius: 20px;
@@ -84,9 +86,13 @@ export const InputSelect = styled.select`
   line-height: 24px;
   outline: none;
   cursor: pointer;
+  background-color: var(--background-light-dark);
+  color: var(--text-dark-white);
+  transition: 0.5s ease;
 
   &:hover {
-    border-color: var(--primary-light);
+    transition: 0.5s ease;
+    border-color: var(--input-hover);
   }
 `;
 
@@ -119,12 +125,14 @@ export const RefreshButton = styled.button`
   width: 100%;
   padding: 8px;
   height: 40px;
-  background-color: var(--white);
+  background-color: var(--background-light-dark);
   color: var(--primary);
   border: none;
   border-radius: 10px;
+  transition: 0.5s ease;
 
   &:hover {
+    transition: 0.5s ease;
     background-color: var(--primary-light);
   }
 
@@ -174,6 +182,7 @@ export const ImageContainer = styled.div`
   transition: 0.5s ease;
   border-radius: 20px;
   margin-bottom: 10px;
+  transition: 0.5s ease;
 
   &:hover div {
     transition: 0.5s ease;
@@ -242,7 +251,7 @@ export const ImageOverlay = styled.div`
 `;
 
 export const FavButton = styled.button`
-  background-color: var(--white);
+  background-color: var(--background-light-dark);
   color: var(--primary);
   border: none;
   width: 40px;

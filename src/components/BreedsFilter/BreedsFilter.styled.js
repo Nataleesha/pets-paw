@@ -8,7 +8,7 @@ export const Select = styled.select`
   padding: 8px 10px;
   border: 2px solid transparent;
   border-radius: 10px;
-  background-color: var(--background-color);
+  background-color: var(--lighter-background);
   color: var(--text-light);
   font-size: 16px;
   font-weight: 400;
@@ -17,7 +17,7 @@ export const Select = styled.select`
   cursor: pointer;
 
   &:hover {
-    border-color: var(--primary-light);
+    border-color: var(--switch);
   }
 
   @media screen and (min-width: ${tablet}) {
@@ -55,12 +55,20 @@ export const AbcSort = styled.button`
   padding: 9px;
   border: 2px solid transparent;
   border-radius: 10px;
-  background-color: var(--background-color);
+  background-color: var(--lighter-background);
   color: var(--text-light);
+
+  svg {
+    pointer-events: none;
+  }
 
   &:hover {
     color: var(--primary);
-    border-color: var(--primary-light);
+    border-color: var(--switch);
+  }
+
+  &.active {
+    color: var(--primary);
   }
 `;
 
@@ -168,7 +176,7 @@ export const ImageOverlay = styled.div`
 
 export const TextOverlay = styled.p`
   width: 100%;
-  background-color: var(--white);
+  background-color: var(--background-light-dark);
   color: var(--primary);
   border-radius: 10px;
   font-size: 16px;

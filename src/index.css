@@ -14,6 +14,29 @@
   --overlay-hover: rgba(255, 134, 142, 0.6);
   --swiper-theme-color: var(--primary);
   --swiper-pagination-bullet-inactive-color: var(--primary-light);
+  --light-background: #fff;
+  --lighter-background: #f8f8f7;
+  --switch: #fbe0dc;
+  --hero: #fbe0dc;
+  --text-dark-white: #1d1d1d;
+  --background-light-dark: #fff;
+  --buttons-border: #fff;
+  --modal-bg: #fff;
+  --input-hover: #fbe0dc;
+}
+
+body.dark-theme {
+  --background-color: #1d1d1d;
+  --text-dark: #fff;
+  --light-background: rgba(255, 255, 255, 0.1);
+  --lighter-background: rgba(255, 255, 255, 0.05);
+  --switch: rgba(255, 134, 142, 0.2);
+  --hero: rgba(255, 255, 255, 0.1);
+  --text-dark-white: #fff;
+  --background-light-dark: #1d1d1d;
+  --buttons-border: #343434;
+  --input-hover: rgba(251, 224, 220, 0.5);
+  --modal-bg: #282828;
 }
 
 body {
@@ -69,13 +92,13 @@ a {
 
 .swiper-custom-pagination.swiper-pagination-bullets.swiper-pagination-horizontal {
   position: absolute;
-  width: 90px;
+  width: 100px;
   height: 30px;
-  bottom: -25px;
+  bottom: -24px;
   left: 94px;
   text-align: center;
-  background-color: var(--white);
-  border-radius: 20px;
+  background-color: var(--buttons-border);
+  border-radius: 30px;
   padding: 5px;
   z-index: 2;
   overflow: visible;
@@ -90,6 +113,7 @@ a {
   .swiper-pagination-bullet {
   width: 10px;
   height: 10px;
-  margin: 3px;
+  margin-left: 4px;
+  margin-right: 4px;
   opacity: 1;
 }

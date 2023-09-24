@@ -1,26 +1,28 @@
 import { styled } from "styled-components";
+import { tablet } from "src/constants/breakpoints";
 
 export const Container = styled.div`
   width: 100%;
-  margin: 0;
+  padding: 0;
+  flex-direction: column;
+  margin: 0 auto;
   position: relative;
   display: flex;
-  flex-direction: row;
   justify-content: right;
 
   & ul {
     justify-content: left;
   }
 
-  @media screen and (max-width: 1439px) {
-    padding: 0;
-    flex-direction: column;
-    margin: 0 auto;
-
-    & ul {
-      justify-content: center;
-    }
+  @media screen and (min-width: ${tablet}) {
+    flex-direction: row;
   }
+`;
+
+export const Navbar = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding-right: 74px;
 `;
 
 export const MenuContainer = styled.div`
@@ -51,10 +53,6 @@ export const ContentContainer = styled.div`
   }
 `;
 
-export const Logo = styled.img`
-  margin-bottom: 80px;
-`;
-
 export const Header = styled.h1`
   color: var(--text-dark);
   font-size: 44px;
@@ -64,7 +62,7 @@ export const Header = styled.h1`
 `;
 
 export const SubHeader = styled.h3`
-  color: #1d1d1d;
+  color: var(--text-dark);
   font-size: 20px;
   font-weight: 500;
   margin-bottom: 20px;

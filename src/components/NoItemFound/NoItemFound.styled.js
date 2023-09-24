@@ -2,7 +2,7 @@ import { styled } from "styled-components";
 
 export const Message = styled.p`
   width: calc(100% - 40px);
-  background-color: var(--background-color);
+  background-color: var(--lighter-background);
   border-radius: 10px;
   font-size: 16px;
   font-weight: 400;

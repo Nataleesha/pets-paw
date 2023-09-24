@@ -40,30 +40,27 @@ export const NavItemLink = styled(NavLink)`
   gap: 10px;
 
   &:hover p {
-    transition: 0.5s ease;
+    transition: all 0.5s ease;
     background-color: var(--primary-light);
   }
 
   &:active p {
-    transition: 0.5s ease;
     background-color: var(--primary);
     color: var(--white);
   }
 
   &.active p {
-    transition: 0.5s ease;
     background-color: var(--primary);
     color: var(--white);
   }
 
   &.active div {
-    transition: 0.5s ease;
     border-color: var(--primary-light);
   }
 `;
 
 export const LinkText = styled.p`
-  background-color: var(--white);
+  background-color: var(--light-background);
   padding: 10px 0;
   border-radius: 10px;
   color: inherit;
@@ -82,15 +79,13 @@ export const Voting = styled.div`
     background-image: url(${voteLogo});
     background-repeat: no-repeat;
     background-position: top 33px left 15px;
-    transition: 0.5s ease;
 
     &:hover {
-      transition: 0.5s ease;
+      transition: all 0.5s ease;
       border-color: var(--white);
     }
 
     &:active {
-      transition: 0.5s ease;
       border-color: var(--primary-light);
     }
   }
@@ -109,15 +104,13 @@ export const Breeds = styled.div`
     background-image: url(${petLogo});
     background-repeat: no-repeat;
     background-position: top 13px left 9px;
-    transition: 0.5s ease;
 
     &:hover {
-      transition: 0.5s ease;
+      transition: all 0.5s ease;
       border-color: var(--white);
     }
 
     &:active {
-      transition: 0.5s ease;
       border-color: var(--primary-light);
     }
   }
@@ -136,15 +129,13 @@ export const Gallery = styled.div`
     background-image: url(${searchLogo});
     background-repeat: no-repeat;
     background-position: bottom 0 left 10px;
-    transition: 0.5s ease;
 
     &:hover {
-      transition: 0.5s ease;
+      transition: all 0.5s ease;
       border-color: var(--white);
     }
 
     &:active {
-      transition: 0.5s ease;
       border-color: var(--primary-light);
     }
   }

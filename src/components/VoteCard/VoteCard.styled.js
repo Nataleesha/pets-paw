@@ -2,7 +2,7 @@ import { styled } from "styled-components";
 import { tablet } from "src/constants/breakpoints";
 
 export const Container = styled.div`
-  margin-bottom: 45px;
+  margin-bottom: 50px;
 `;
 
 export const ImageCard = styled.div`
@@ -24,9 +24,9 @@ export const ButtonList = styled.ul`
   transform: translateY(-50%);
   left: 55px;
   display: flex;
-  border: 5px solid var(--white);
+  border: 5px solid var(--buttons-border);
   border-radius: 20px;
-  background-color: var(--white);
+  background-color: var(--buttons-border);
 
   @media screen and (min-width: ${tablet}) {
     left: 230px;

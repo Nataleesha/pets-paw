@@ -107,7 +107,7 @@ export const Title = styled.h3`
   top: -16px;
   right: 50%;
   transform: translateX(50%);
-  background-color: var(--white);
+  background-color: var(--buttons-border);
   padding: 0 20px;
   white-space: nowrap;
 

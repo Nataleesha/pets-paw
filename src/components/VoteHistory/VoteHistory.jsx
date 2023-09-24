@@ -1,7 +1,7 @@
 import { nanoid } from "nanoid";
 import PropTypes from "prop-types";
 
-import { List, ListItem, TimeButton } from "./VoteHistory.styled";
+import { List, ListItem, TimeButton, IdSpan } from "./VoteHistory.styled";
 
 const VoteHistory = ({ history }) => {
   return !history.length ? null : (
@@ -59,8 +59,7 @@ const VoteHistory = ({ history }) => {
               </svg>
             )}
             <p>
-              Image ID: <span style={{ color: "#1d1d1d" }}>{vote.id}</span> was{" "}
-              {vote.action}
+              Image ID: <IdSpan>{vote.id}</IdSpan> was {vote.action}
             </p>
           </ListItem>
         );

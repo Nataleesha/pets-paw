@@ -7,7 +7,7 @@ export const List = styled.ul`
 `;
 
 export const ListItem = styled.li`
-  background-color: var(--background-color);
+  background-color: var(--lighter-background);
   border-radius: 10px;
   margin-bottom: 10px;
   padding: 15px;
@@ -39,8 +39,12 @@ export const TimeButton = styled.button`
   border: transparent;
   border-radius: 5px;
   cursor: default;
-  background-color: var(--white);
-  color: var(--text-dark);
+  background-color: var(--background-light-dark);
+  color: var(--text-dark-white);
   width: 60px;
   height: 30px;
+`;
+
+export const IdSpan = styled.span`
+  color: var(--text-dark-white);
 `;

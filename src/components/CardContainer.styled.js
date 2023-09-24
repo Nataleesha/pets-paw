@@ -4,7 +4,7 @@ import { tablet } from "src/constants/breakpoints";
 export const CardContainer = styled.div`
   padding: 20px;
   border-radius: 20px;
-  background-color: var(--white);
+  background-color: var(--light-background);
   min-height: calc(100vh - 220px);
 
   @media screen and (min-width: ${tablet}) {

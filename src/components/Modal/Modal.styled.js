@@ -21,8 +21,22 @@ export const InnerContainer = styled.div`
   height: calc(100% - 40px);
   padding: 20px;
 
+  ul {
+    justify-content: center;
+  }
+
   @media screen and (min-width: ${tablet}) {
-    width: ${tablet};
+    width: 728px;
+  }
+`;
+
+export const Navbar = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  @media screen and (min-width: ${tablet}) {
+    padding-left: 140px;
   }
 `;
 
@@ -32,7 +46,7 @@ export const ButtonClose = styled.button`
   width: 60px;
   height: 60px;
   margin: 0 0 20px 0;
-  background-color: var(--white);
+  background-color: var(--light-background);
   color: var(--primary);
 
   &:hover {
