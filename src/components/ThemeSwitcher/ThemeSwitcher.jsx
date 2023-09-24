@@ -3,7 +3,9 @@ import { Switch } from "./ThemeSwitcher.styled";
 
 const ThemeSwitcher = () => {
   const [isChecked, setIsChecked] = useState(
-    JSON.parse(localStorage.themeIsDark) || false
+    !localStorage.themeIsDark !== "undefined"
+      ? JSON.parse(localStorage.themeIsDark)
+      : false
   );
 
   if (isChecked) {
