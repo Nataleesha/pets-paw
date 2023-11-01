@@ -21,7 +21,11 @@ const Voting = ({ userID, voteHistory, setVoteHistory }) => {
 
     const getAllFavorites = async () => {
       const res = await getData(`favourites?sub_id=${userID}&order=DESC`);
-      setFavorites(res.data);
+      try {
+        setFavorites(res.data);
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     getAllFavorites();

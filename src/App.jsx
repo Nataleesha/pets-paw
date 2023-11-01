@@ -1,19 +1,25 @@
 import { Route, Routes } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy } from "react";
 import { nanoid } from "nanoid";
 import { HelmetProvider } from "react-helmet-async";
 
-import SharedLayout from "./components/SharedLayout/SharedLayout";
-import Home from "./pages/Home/Home";
-import Voting from "./pages/Voting/Voting";
-import Breeds from "./pages/Breeds/Breeds";
-import BreedDetails from "./pages/BreedDetails/BreedDetails";
-import Gallery from "./pages/Gallery/Gallery";
-import Likes from "./pages/Likes/Likes";
-import Dislikes from "./pages/Dislikes/Dislikes";
-import Favourites from "./pages/Favourites/Favourites";
-import SearchByName from "./pages/SearchByName/SearchByName";
-import Loader from "./components/Loader/Loader";
+const SharedLayout = lazy(() =>
+  import("/src/components/SharedLayout/SharedLayout.jsx")
+);
+const Home = lazy(() => import("/src/pages/Home/Home.jsx"));
+const Voting = lazy(() => import("/src/pages/Voting/Voting.jsx"));
+const Breeds = lazy(() => import("/src/pages/Breeds/Breeds.jsx"));
+const BreedDetails = lazy(() =>
+  import("/src/pages/BreedDetails/BreedDetails.jsx")
+);
+const Gallery = lazy(() => import("/src/pages/Gallery/Gallery.jsx"));
+const Likes = lazy(() => import("/src/pages/Likes/Likes.jsx"));
+const Dislikes = lazy(() => import("/src/pages/Dislikes/Dislikes.jsx"));
+const Favourites = lazy(() => import("/src/pages/Favourites/Favourites.jsx"));
+const SearchByName = lazy(() =>
+  import("/src/pages/SearchByName/SearchByName.jsx")
+);
+const Loader = lazy(() => import("/src/components/Loader/Loader.jsx"));
 
 import { getData } from "src/utils/api";
 
